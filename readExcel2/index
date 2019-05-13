@@ -1,0 +1,72 @@
+<?php
+require_once("composer/vendor/autoload.php");
+require_once("dbconfig.php");
+
+if(isset($_POST["submit"])) {
+	$uploadOk = 1;
+
+	$target_dir = "uploads/";
+	$target_name = $target_dir . date("Y_m_d") . basename($_FILES["uplfile"]["name"]);
+
+	$imageFileType = $_FILES["uplfile"]["type"];
+	$fileType = pathinfo($target_name, PATHINFO_EXTENSION);
+	
+	if ($fileType != "xls" && $fileType != "xlsx" ) {
+	    echo "Only xls & xlsx files are allowed.";
+	    $uploadOk = 0;
+	}
+
+	if ($uploadOk == 0) {
+		echo "Sorry, your file was not uploaded.";
+	}
+	else {
+	    if (move_uploaded_file($_FILES["uplfile"]["tmp_name"], $target_name)) {
+	        echo "The file has been uploaded.";
+	        
+	        $reader = new \PhpOffice\PhpSpreadsheet\Reader\Xls();
+			$reader->setReadDataOnly(true);
+			$spreadsheet = $reader->load($target_name);
+			$sheetData = $spreadsheet->getActiveSheet()->toArray(null, true, true, true);
+			var_dump($sheetData);
+
+
+
+	    } else {
+	        echo "Sorry, there was an error uploading your file.";
+	    }
+	}
+
+}
+
+?>
+
+
+
+
+<form action="" method="POST" enctype="multipart/form-data">
+    Browse to select a file:<br>
+    <input type="file" name="uplfile" />
+    <input type="submit" name="submit" />
+</form>
+
+ <!--<?php 
+          $sql = "SELECT productCode, productName, productLine FROM products";
+          $query = $conn->prepare($sql);
+          $query->execute();
+          $sheetData = $query->fetchAll(PDO::FETCH_ASSOC); 
+          ?>-->
+
+<table>
+	<tr>
+<?php foreach ($sheetData as $result) {
+	?>
+	<td><?php echo  $result['A']; ?></td>
+</tr>
+<?php } ?>
+
+
+</table>
+
+</body>
+
+</html>
