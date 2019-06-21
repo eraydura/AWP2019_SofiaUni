@@ -5,10 +5,31 @@
 <title>Home</title>
 <link rel="stylesheet" href="resources/css/bootstrap.min.css" type="text/css"  />
 <link rel="stylesheet" href="resources/css/style.css" type="text/css" />
+
+<style>
+
+body {
+	background-image:url(paysage.jpg);
+	background-repeat: no-repeat;
+	background-size: cover;
+	background-attachment: fixed;
+}
+
+table {                                         
+  	margin-right: 150px;
+  	margin-left: 80px;
+  	padding:50px;
+    width: 465px; 
+    border-radius: 50px;
+    
+}
+
+</style>
 </head>
 <body>
 
-<h1 class="text-center"> List of products </h1>
+<h1 class="text-center"><i> List of products </i></h1>
+<div class="form-group"><hr/></div>  
 
 <?php
 require_once("composer/vendor/autoload.php");
@@ -60,9 +81,9 @@ if(isset($_POST["submit"])) {
 
 
 <br><br>
-<table class="table table-hover center-block">
- <thead class="thead-dark"> 
-  <tr class="bg-info">
+<table class="table table-striped form-group center-block">
+ <thead class="thead-light"> 
+  <tr class="bg-info" style="border-radius: 50px;">
       <th>Code</th>
       <th>Name</th>
       <th>Type</th>
@@ -75,7 +96,7 @@ if(isset($_POST["submit"])) {
 <?php if(isset($_POST["submit"])) {
 	foreach ($sheetData as $result) {
 	?>
-	<tr>
+	<tr class="active">
 	<td><?php echo $result['A']; ?></td>
 	<td><?php echo $result['B']; ?></td>
 	<td><?php echo $result['C']; ?></td>
@@ -95,7 +116,7 @@ $query = $conn->prepare($sql);
 
 ?>
 </table>
-<?php foreach ($sheetData as $line) {
+<!--<?php foreach ($sheetData as $line) {
                 $valuesToInsert = "";
                 foreach ($line as $row) {
                         $valuesToInsert .= '"' . $row . '", ';
@@ -108,7 +129,7 @@ $query = $conn->prepare($sql);
                 $sql = "INSERT INTO products VALUES(" . $valuesToInsert . ");";
                // $query = $dbh->prepare($sql);
                // $query->execute();
-        }?>
+        }?>-->
 </body>
 
 </html>
