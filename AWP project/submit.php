@@ -34,6 +34,7 @@ if ($conn->query($sql) === TRUE) {
 	header("Refresh: 3; url=http://localhost/profile.php"); 
 } else {
     echo "Error: " . $sql . "<br>" . $conn->error;
+    header("Refresh: 3; url=http://localhost/register.php"); 
 }
 
 $conn->close();
@@ -50,5 +51,5 @@ $_SESSION["telephone"] = $_POST["Telephone"];
 /*$_SESSION["card"] = $_POST["Card"];
 $_SESSION["gender"] = $_POST["gender"];*/
 $_SESSION["picture"]=$_POST['pic'];
-echo "Session variables are set.";
+//echo "Session variables are set.";
 ?>

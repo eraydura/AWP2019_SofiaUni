@@ -13,13 +13,47 @@ $baglan = mysqli_connect("localhost","root","","mywebapp");
 <html>
 <head>
 <meta charset="utf-8">
-<title>Başlıksız Belge</title>
-</head>
+<link rel="stylesheet" href="resources/css/bootstrap.min.css" type="text/css"  />
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+
+  
+<style> 
+registration {                                         
+    margin-left: 70px; 
+    font-weight: bold ; 
+    float: left; 
+    clear: left; 
+    width: 100px; 
+    text-align: left; 
+    margin-right: 10px; 
+    font-family:sans-serif,bold, Arial, Helvetica; 
+    font-size:14px; 
+} 
+body {
+background-image:url(paysage.jpg);
+background-repeat: no-repeat;
+background-size: cover;
+background-attachment: fixed;
+}
+   
+form {                                         
+    margin: 5 auto; 
+    width: 465px; 
+    border-radius: 10px;
+    background-color: rgba(95,95,95,0.4);
+    padding:20px;
+}
+
+</style>
+</head> 
 
 <body>
 
 <form action="#" method="post">
 <select name="Color">
+<option>--Choose--</option>
 <option value="Name">Name</option>
 <option value="Surname">Surname</option>
 <option value="Password">Password</option>
@@ -35,28 +69,28 @@ $baglan = mysqli_connect("localhost","root","","mywebapp");
 if(isset($_POST['submit'])){
 $selected_val = $_POST['Color']; 
 if($selected_val=="Name"){
-	echo"<form action='#' method='post'><input name='name' class='form-control' type='text' > </input> <input type='submit' name='submit1' /> </form> ";
+	echo"<form action='#' method='post'><label>Enter a new Name:</label><input name='name' class='form-control' type='text' > </input> <input class='btn btn-primary' type='submit' name='submit1' /> </form> ";
 }
 	if($selected_val=="Surname"){
-	echo"<form action='#' method='post'><input class='form-control' type='text' name='surname' > </input> <input type='submit' name='submit2' /> </form> ";
+	echo"<form action='#' method='post'><label>Enter a new Surname:</label><input class='form-control' type='text' name='surname' > </input> <input class='btn btn-primary' type='submit' name='submit2' /> </form> ";
 }
 	if($selected_val=="Password"){
-	echo"<form action='#' method='post'><input pattern='(?=^.{8,}$)((?=.*\d)|(?=.*\W+))(?![.\n])(?=.*[A-Z])(?=.*[a-z]).*$' class='form-control' type='password' title='Must contain at least one number and one uppercase and lowercase letter, and at least 8 or more characters'  name='password'> <input type='submit' name='submit3' /> </form> ";
+	echo"<form action='#' method='post'><label>Enter a new Password:</label><input pattern='(?=^.{8,}$)((?=.*\d)|(?=.*\W+))(?![.\n])(?=.*[A-Z])(?=.*[a-z]).*$' class='form-control' type='password' title='Must contain at least one number and one uppercase and lowercase letter, and at least 8 or more characters'  name='password'> <input class='btn btn-primary' type='submit' name='submit3' /> </form> ";
 }
 	if($selected_val=="Email"){
-	echo"<form action='#' method='post'><input class='form-control' pattern='[^@\s]+@[^@\s]+\.[^@\s]+' title='Invalid email address' type='text'  name='email'> <input type='submit' name='submit4' /> </form> ";
+	echo"<form action='#' method='post'><label>Enter a new Email:</label><input class='form-control' pattern='[^@\s]+@[^@\s]+\.[^@\s]+' title='Invalid email address' type='text'  name='email'> <input class='btn btn-primary' type='submit' name='submit4' /> </form> ";
 }
 	if($selected_val=="Address"){
-	echo"<form action='#' method='post'><textarea class='form-control' type='text' name='address' > </textarea> <input type='submit' name='submit5' /> </form> ";
+	echo"<form action='#' method='post'><label>Enter a new Address:</label><textarea class='form-control' type='text' name='address' > </textarea> <input class='btn btn-primary' type='submit' name='submit5' /> </form> ";
 }
 	/*if($selected_val=="Card"){
 	echo"<form action='#' method='post'><input pattern='^(?:4[0-9]{12}(?:[0-9]{3})?|5[1-5][0-9]{14})$' class='form-control' title='Must enter valid credit card' type='text' name='card'> <input type='submit' name='submit6' /> </form> ";
 }*/
 	if($selected_val=="Picture"){
-	echo"<form action='#' method='post'><input type='text' class='form-control' name='picture' pattern='(http[^\s]+(jpg|jpeg|png|tiff)\b)' ></span> </p> <input type='submit' name='submit7' /> </form> ";
+	echo"<form action='#' method='post'><label>Enter a new Picture:</label><input type='text' class='form-control' name='picture' pattern='(http[^\s]+(jpg|jpeg|png|tiff)\b)' ></span> </p> <input class='btn btn-primary' type='submit' name='submit7' /> </form> ";
 }
 	if($selected_val=="Telephone"){
-	echo"<form action='#' method='post'><input class='form-control' type='text' pattern='[0-9]{10}'  title='Ten digits code'  name='telephone'> <input type='submit' name='submit8' /> </form> ";
+	echo"<form action='#' method='post'><label>Enter a new Telephone Number:</label><input class='form-control' type='text' pattern='[0-9]{10}'  title='Ten digits code'  name='telephone'> <input class='btn btn-primary' type='submit' name='submit8' /> </form> ";
 }
 }
 	if(isset($_POST['submit1'])){
@@ -80,7 +114,7 @@ if ($baglan->query($sql) === TRUE) {
 }
 			}
 					if(isset($_POST['submit3'])){
-	$sql = "UPDATE users SET Pasword='$_POST[password]' WHERE id='$_SESSION[id]'";
+	$sql = "UPDATE users SET Password='$_POST[password]' WHERE id='$_SESSION[id]'";
 
 if ($baglan->query($sql) === TRUE) {
   echo "<script> alert('You have to login again!!'); </script>";
@@ -90,7 +124,7 @@ if ($baglan->query($sql) === TRUE) {
 }
 					}
 							if(isset($_POST['submit4'])){
-	$sql = "UPDATE users SET Email='$_POST[email]' WHERE id='$_SESSION[id]'";
+	$sql = "UPDATE users SET EMail='$_POST[email]' WHERE id='$_SESSION[id]'";
 
 if ($baglan->query($sql) === TRUE) {
     echo "<script> alert('You have to login again!!'); </script>";
