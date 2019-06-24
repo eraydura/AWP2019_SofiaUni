@@ -3,7 +3,7 @@
 session_start();
 ?>
 <?php
-$baglan = mysqli_connect("localhost","root","manisa45","ecommercial");
+$baglan = mysqli_connect("localhost","root","","mywebapp");
 	if($baglan === false){
     die("ERROR: Could not connect. " . mysqli_connect_error());
 }
@@ -24,7 +24,7 @@ $baglan = mysqli_connect("localhost","root","manisa45","ecommercial");
 <option value="Surname">Surname</option>
 <option value="Password">Password</option>
 <option value="Email">Email</option>
-<option value="Card">Card</option>
+<!--<option value="Card">Card</option>-->
 <option value="Address">Address</option>
 <option value="Picture">Picture</option>
 <option value="Telephone">Telephone</option>
@@ -49,9 +49,9 @@ if($selected_val=="Name"){
 	if($selected_val=="Address"){
 	echo"<form action='#' method='post'><textarea class='form-control' type='text' name='address' > </textarea> <input type='submit' name='submit5' /> </form> ";
 }
-	if($selected_val=="Card"){
+	/*if($selected_val=="Card"){
 	echo"<form action='#' method='post'><input pattern='^(?:4[0-9]{12}(?:[0-9]{3})?|5[1-5][0-9]{14})$' class='form-control' title='Must enter valid credit card' type='text' name='card'> <input type='submit' name='submit6' /> </form> ";
-}
+}*/
 	if($selected_val=="Picture"){
 	echo"<form action='#' method='post'><input type='text' class='form-control' name='picture' pattern='(http[^\s]+(jpg|jpeg|png|tiff)\b)' ></span> </p> <input type='submit' name='submit7' /> </form> ";
 }
@@ -60,7 +60,7 @@ if($selected_val=="Name"){
 }
 }
 	if(isset($_POST['submit1'])){
-	$sql = "UPDATE users SET username='$_POST[name]' WHERE Personid='$_SESSION[id]'";
+	$sql = "UPDATE users SET Name='$_POST[name]' WHERE id='$_SESSION[id]'";
 
 if ($baglan->query($sql) === TRUE) {
   echo "<script> alert('You have to login again!!'); </script>";
@@ -70,7 +70,7 @@ if ($baglan->query($sql) === TRUE) {
 }
 	}
 			if(isset($_POST['submit2'])){
-	$sql = "UPDATE users SET Surname='$_POST[surname]' WHERE Personid='$_SESSION[id]'";
+	$sql = "UPDATE users SET Surname='$_POST[surname]' WHERE id='$_SESSION[id]'";
 
 if ($baglan->query($sql) === TRUE) {
    echo "<script> alert('You have to login again!!'); </script>";
@@ -80,7 +80,7 @@ if ($baglan->query($sql) === TRUE) {
 }
 			}
 					if(isset($_POST['submit3'])){
-	$sql = "UPDATE users SET Pasword='$_POST[password]' WHERE Personid='$_SESSION[id]'";
+	$sql = "UPDATE users SET Pasword='$_POST[password]' WHERE id='$_SESSION[id]'";
 
 if ($baglan->query($sql) === TRUE) {
   echo "<script> alert('You have to login again!!'); </script>";
@@ -90,7 +90,7 @@ if ($baglan->query($sql) === TRUE) {
 }
 					}
 							if(isset($_POST['submit4'])){
-	$sql = "UPDATE users SET Email='$_POST[email]' WHERE Personid='$_SESSION[id]'";
+	$sql = "UPDATE users SET Email='$_POST[email]' WHERE id='$_SESSION[id]'";
 
 if ($baglan->query($sql) === TRUE) {
     echo "<script> alert('You have to login again!!'); </script>";
@@ -100,7 +100,7 @@ if ($baglan->query($sql) === TRUE) {
 }
 							}
 									if(isset($_POST['submit5'])){
-	$sql = "UPDATE users SET Address='$_POST[address]' WHERE Personid='$_SESSION[id]'";
+	$sql = "UPDATE users SET Address='$_POST[address]' WHERE id='$_SESSION[id]'";
 
 if ($baglan->query($sql) === TRUE) {
     echo "<script> alert('You have to login again!!'); </script>";
@@ -110,7 +110,7 @@ if ($baglan->query($sql) === TRUE) {
 }
 									}
 											if(isset($_POST['submit6'])){
-	$sql = "UPDATE users SET Picture='$_POST[picture]' WHERE Personid='$_SESSION[id]'";
+	$sql = "UPDATE users SET Picture='$_POST[picture]' WHERE id='$_SESSION[id]'";
 
 if ($baglan->query($sql) === TRUE) {
  echo "<script> alert('You have to login again!!'); </script>";
@@ -120,7 +120,7 @@ if ($baglan->query($sql) === TRUE) {
 }
 											}
 													if(isset($_POST['submit7'])){
-	$sql = "UPDATE users SET Telephone='$_POST[telephone]' WHERE Personid='$_SESSION[id]'";
+	$sql = "UPDATE users SET Telephone='$_POST[telephone]' WHERE id='$_SESSION[id]'";
 
 if ($baglan->query($sql) === TRUE) {
     echo "<script> alert('You have to login again!!'); </script>";
@@ -131,7 +131,7 @@ if ($baglan->query($sql) === TRUE) {
 }
 													}
 															if(isset($_POST['submit8'])){
-	$sql = "UPDATE users SET Card='$_POST[card]' WHERE Personid='$_SESSION[id]'";
+	$sql = "UPDATE users SET Card='$_POST[card]' WHERE id='$_SESSION[id]'";
 
 if ($baglan->query($sql) === TRUE) {
   echo "<script> alert('You have to login again!!'); </script>";

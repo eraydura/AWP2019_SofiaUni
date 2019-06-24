@@ -1,52 +1,57 @@
 <!doctype html>
 <html>
 <?php
-$baglan = mysql_connect("localhost","root","manisa45");
-if(!$baglan){
- die('404 ERROR:' . mysql_error()); 
-}
-$db_select = mysql_select_db("ecommercial");
+session_start();
 
-?>
+$baglan = mysqli_connect("localhost","root","","mywebapp");
+  if($baglan === false){
+    die("ERROR: Could not connect. " . mysqli_connect_error());
+}?>
 <head>
 <meta charset="utf-8">
-<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+
+<link rel="stylesheet" href="resources/css/bootstrap.min.css" type="text/css"  />
+<link rel="stylesheet" href="resources/css/style.css" type="text/css" />
+<script src="https://code.jquery.com/jquery-3.3.1.sli
+m.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
-<title>Başlıksız Belge</title>
+<title>Home</title>
+<style>
+
+body {
+  background-image:url(paysage.jpg);
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-attachment: fixed;
+}
+
+.vehicomm {
+  width: 115px;
+}
+
+</style>
 </head>
 
 <body>
-<nav class="navbar navbar-expand-lg navbar-light bg-light">
-  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo03" aria-controls="navbarTogglerDemo03" aria-expanded="false" aria-label="Toggle navigation">
-    <span class="navbar-toggler-icon"></span>
-  </button>
-  <a class="navbar-brand" href="#"><img src="https://banner2.kisspng.com/20180519/jjs/kisspng-e-commerce-logo-electronic-business-5b00d2d0918d84.2335269315267806245962.jpg" width="50px"></a>
-
-  <div class="collapse navbar-collapse" id="navbarTogglerDemo03">
-    <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
-      <li class="nav-item active">
-        <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="#">Link</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link disabled" href="#">Disabled</a>
-      </li>
+<nav class="navbar navbar-inverse navbar-fixed-top">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <i><a class="navbar-brand" href="profile.php" title="Profile"><img src="vehicomm.png" class="vehicomm"></a></i>
+    </div>
+    <ul class="nav navbar-nav">
+      <li class="active"><a href="#">Home</a></li>
+      <li><a href="index.php">Products</a></li>
+      <li><a href="basket.php">My Basket</a></li>
+      <li><a href="#">About</a></li>
     </ul>
-    <form class="form-inline my-2 my-lg-0">
-      <button style="margin-right: 5px" type="button" onClick="location.href='http://localhost/login.php'" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
-  Sign-in 
-</button>
-      <button style="margin-right: 5px" onClick="location.href='http://localhost/register.php'" type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal1">
-  Log-in
-</button>
-	  </form>
-  
+     <ul class="nav navbar-nav navbar-right">
+        <li><a href="register.php"><span class=""></span> Sign Up</a></li>
+        <li><a href="login.php"><img src="user.png" width="20px"> Login</a></li>
+      </ul>
   </div>
 </nav>
+<br><br><br>
 <div class="container" style="margin-top: 50px; margin-bottom: 50px ">
 <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
   <ol class="carousel-indicators">

@@ -1,10 +1,10 @@
 ﻿<!doctype html>
 <html>
 <head>
-<link href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+<link rel="stylesheet" href="resources/css/bootstrap.min.css" type="text/css"  />
+<link rel="stylesheet" href="resources/css/style.css" type="text/css" />
 <script src="//netdna.bootstrapcdn.com/bootstrap/3.0.0/js/bootstrap.min.js"></script>
 <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
-<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
@@ -13,7 +13,7 @@
 session_start();
 ?>
 <?php
-$baglan = mysqli_connect("localhost","root","manisa45","ecommercial");
+$baglan = mysqli_connect("localhost","root","","mywebapp");
 	if($baglan === false){
     die("ERROR: Could not connect. " . mysqli_connect_error());
 }
@@ -21,37 +21,51 @@ $baglan = mysqli_connect("localhost","root","manisa45","ecommercial");
 
 ?>
 <meta charset="utf-8">
-<title>Başlıksız Belge</title>
+<title>Profile</title>
+<style type="text/css">
+  
+  body {
+  background-image:url(paysage.jpg);
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-attachment: fixed;
+}
+
+.vehicomm {
+  width: 115px;
+}
+
+.form {                                         
+    margin: auto; 
+    border-radius: 10px;
+    background-color: rgba(95,95,95,0.4);
+}
+
+</style>
 </head>
 
-<body>
-<nav class="navbar navbar-expand-lg navbar-light bg-light">
-  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo03" aria-controls="navbarTogglerDemo03" aria-expanded="false" aria-label="Toggle navigation">
-    <span class="navbar-toggler-icon"></span>
-  </button>
-  <a class="navbar-brand" href="#"><img src="https://banner2.kisspng.com/20180519/jjs/kisspng-e-commerce-logo-electronic-business-5b00d2d0918d84.2335269315267806245962.jpg" width="50px"></a>
+<body> 
 
-  <div class="collapse navbar-collapse" id="navbarTogglerDemo03">
-    <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
-      <li class="nav-item active">
-        <a class="nav-link" href="http://localhost/profilemain.php">Home <span class="sr-only">(current)</span></a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="#">Link</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link disabled" href="#">Disabled</a>
-      </li>
+<nav class="navbar navbar-inverse navbar-fixed-top">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <i><a class="navbar-brand" href="#" title="Profile"><img src="vehicomm.png" class="vehicomm"></a></i>
+    </div>
+    <ul class="nav navbar-nav">
+      <li><a href="main.php">Home</a></li>
+      <li><a href="index.php">Products</a></li>
+      <li><a href="basket.php">My Basket</a></li>
+      <li><a href="#">About</a></li>
     </ul>
-    <form class="form-inline my-2 my-lg-0">
-      
-      <a style="margin-right: 5px" href="http://localhost/profile.php" >
-<img src="https://cdn2.iconfinder.com/data/icons/business-management-52/96/Artboard_20-512.png" width="30px">
-</a>
-	  </form>
-  
+     <ul class="nav navbar-nav navbar-right">
+        <li><a href="register.php"><span class=""></span> Sign Up</a></li>
+        <li><a href="login.php"><img src="user.png" width="20px"> Login</a></li>
+      </ul>
+  </div>
 </nav>
-<div class="container">
+<br><br><br>
+
+<div class="container form">
     <div class="row">
         <div class="col-sm-12 ">
             <div class="well well-sm">
@@ -105,11 +119,11 @@ echo $_SESSION["gender"] . "<br>";
                             </ul>
                         </div>
  <?php
-	$sqld= "SELECT Personid FROM users WHERE username='$_SESSION[name]' ";
+	$sqld= "SELECT id FROM users WHERE username='$_SESSION[name]' ";
 		$result5 = mysqli_query($baglan, $sqld);
 	if (mysqli_num_rows($result5) > 0) {
 		while($row5 = mysqli_fetch_assoc($result5)) {
-			$_SESSION["id"] = $row5[Personid];
+			$_SESSION["id"] = $row5[id];
 		}
 	}
 	?>

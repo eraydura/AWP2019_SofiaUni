@@ -56,13 +56,18 @@ form {
     padding:20px;
 }
 
+.vehicomm {
+  width: 150px;
+  float:right;
+}
+
 </style>
 </head> 
    
 <body> 
    
 <form class="form-group form-control-static" name="RegForm" action="/submit.php" onsubmit="return registration()" method="post">  
-      <h1 class ="form-group" style="text-align: center;"><i> Sign Up </i></h1>  
+      <h1 class ="form-group" style="padding-left: 50px;"><img src="vehicomm2.png" class="vehicomm"><i> Sign Up </i></h1>  
 <div class="form-group"><hr/></div>   
 
     <div class="form-group">
@@ -101,7 +106,7 @@ form {
      <!--<p>Credit Card <input pattern="^(?:4[0-9]{12}(?:[0-9]{3})?|5[1-5][0-9]{14})$" class="form-control" title="Must enter valid credit card" type="text" name="Card">  </p>      -->
      
     <div class="form-group">
-      <p><strong>Address*</strong><textarea class="form-control" rows="5" name="Adress" placeholder="Address">  </textarea></p> </div>
+      <p><strong>Address*</strong><textarea class="form-control" rows="5" name="Address" placeholder="Address">  </textarea></p> </div>
 
       <div class="dropdown">
     <select class="btn btn-default dropdown-toggle" id="">
@@ -121,7 +126,8 @@ form {
 
       <p>
        <input class="btn btn-success" type="submit" value="Submit" name="Submit">      
-        <input class="btn btn-danger" style="float:right;" type="reset" value="Reset" name="Reset">   
+        <input class="btn btn-danger" type="reset" value="Reset" name="Reset">
+        <input class="btn btn-primary" style="float:right;" type="button" onclick="location.href='login.php';" value="Sign In ?">
     </p>  
    
 </form> 

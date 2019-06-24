@@ -5,8 +5,8 @@ session_start();
 
 $servername = "localhost";
 $username = "root";
-$password = "manisa45";
-$dbname = "ecommercial";
+$password = "";
+$dbname = "mywebapp";
 
 // Create connection
 $conn = new mysqli($servername, $username, $password, $dbname);
@@ -18,15 +18,16 @@ if ($conn->connect_error) {
  $Name        =    $_POST["Name"];
  $Surname    =    $_POST["Surname"];
  $Telephone       =    $_POST["Telephone"];
- $Card   =    $_POST["Card"];
- $Adress       =    $_POST["Adress"];
+ //$Card   =    $_POST["Card"];
+ $Address       =    $_POST["Address"];
 $Password      =    $_POST["Password"];
+//$Pass_hash = password_hash($Password, PASSWORD_DEFAULT);
  $EMail   =    $_POST["EMail"];
- $gender   =    $_POST["gender"];
-$pic   =    $_POST['pic'];
+// $gender   =    $_POST["gender"];
+//$pic   =    $_POST['pic'];
 
-$sql = "INSERT INTO users (userame, Surname, Telephone,Card, Address,Pasword, Email,gender,pic)
-VALUES ('$Name' , '$Surname','$Telephone','$Card','$Adress','$Password','$EMail','$gender','$pic')";
+$sql = "INSERT INTO users (Name, Surname, Telephone, Address, Password, EMail)
+VALUES ('$Name' , '$Surname','$Telephone','$Address','$Password','$EMail')";
 
 if ($conn->query($sql) === TRUE) {
     echo "New record created successfully";
@@ -44,10 +45,10 @@ $conn->close();
 $_SESSION["name"] = $_POST["Name"];
 $_SESSION["email"] = $_POST["EMail"];
 $_SESSION["surname"] = $_POST["Surname"];
-$_SESSION["adress"] = $_POST["Adress"];
+$_SESSION["adress"] = $_POST["Address"];
 $_SESSION["telephone"] = $_POST["Telephone"];
-$_SESSION["card"] = $_POST["Card"];
-$_SESSION["gender"] = $_POST["gender"];
+/*$_SESSION["card"] = $_POST["Card"];
+$_SESSION["gender"] = $_POST["gender"];*/
 $_SESSION["picture"]=$_POST['pic'];
 echo "Session variables are set.";
 ?>
