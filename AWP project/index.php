@@ -33,8 +33,7 @@ thead{
 }
 
 .div1{
-	float: right;
-	margin-right: 50px
+	margin-left: 50px;
 }
 
 .div2{
@@ -43,6 +42,38 @@ thead{
 
 .div3{
 	margin-left: 50px
+}
+
+div.spoiler {
+    padding: 10px;
+    width: 50%;
+    /*border: 1px solid black;*/
+    cursor: pointer;
+    margin-right: 500px;
+    float: left;
+
+}
+
+/*div.spoiler2 {
+    padding: 10px;
+    width: 50%;
+    border: 1px solid black;
+    cursor: pointer;
+    margin-right: 500px;
+
+}
+
+div.spoiler3 {
+    padding: 10px;
+    width: 50%;
+    border: 1px solid black;
+    cursor: pointer;
+    margin-right: 500px;
+
+}*/
+
+div.spoiler div.contenuSpoiler {
+    display: none;
 }
 
 .drop{
@@ -58,6 +89,17 @@ color: black;
   width: 115px;
 }
 
+.inpt{
+  border: none;
+  background-color: #f5f5f5;
+  margin-bottom: 2px;
+}
+
+.contain{
+  float: right;
+  padding-left: 20px;
+}
+
 </style>
 
 <script type="text/javascript">
@@ -68,6 +110,56 @@ jQuery(document).ready(function() {
 
    });
 });
+
+function openclose(div) {
+        var divContenu = div.getElementsByTagName('div')[0];
+        var one = document.getElementById("1");
+        var two = document.getElementById("2");
+        var three = document.getElementById("3");
+
+        if(divContenu.style.display == 'none') {
+            divContenu.style.display = 'block';
+        } else {
+            divContenu.style.display = 'block';
+        }
+        if (one.clicked == true || two.clicked == true || three.clicked == true ) {
+          echo
+          divContenu.style.display = 'none';
+        }
+    }
+
+function add(){
+  var code = document.getElementById('code').innerHTML;
+  var name = document.getElementById('name').innerHTML;
+  var line = document.getElementById('type').innerHTML;
+  var price = document.getElementById('price').innerHTML;
+  var arrayLignes = document.getElementById("tab").innerHTML;
+  var longueur = arrayLignes.length; 
+//alert(arrayLignes);
+//alert(longueur);
+
+
+document.getElementById('input1').value = code;
+document.getElementById('input2').value = name;
+document.getElementById('input3').value = line;
+document.getElementById('input4').value = price;
+
+}
+
+
+function check() {
+  var c = document.getElementById('input3').value;
+  alert(c);
+  if (c != "Classic Cars" || c != "Motorcycles" || c != "Planes"|| c != "Ships" || c != "Trains" || c != "Trucks and Buses" || c != "Vintage Cars"){
+    return false;
+    alert("tg");
+  }
+  else{
+    return true;
+  }
+}
+
+
 
 
 </script>
@@ -95,17 +187,18 @@ jQuery(document).ready(function() {
 <br><br><br>
 
 <div class="container">
-  <ul class="nav nav-tabs">
+  <!--<ul class="nav nav-tabs">-->
     <!--<li class="active"><a data-toggle="tab" href="#home">Home</a></li>-->
-    <li><a data-toggle="tab" href="#div1"><strong>Browse</strong></a></li>
+   <!-- <li><a data-toggle="tab" href="#div1"><strong>Browse</strong></a></li>
     <li><a data-toggle="tab" href="#div2"><strong>Search</strong></a></li>
     <li><a data-toggle="tab" href="#div3"><strong>Choose</strong></a></li>
-  </ul>
+  </ul>-->
 <br>
 
 <?php
 require_once("composer/vendor/autoload.php");
 require_once("dbconfig.php");
+ini_set('display_errors','off');
 
 if(isset($_POST["submit"])) {
 	$uploadOk = 1;
@@ -116,8 +209,8 @@ if(isset($_POST["submit"])) {
 	$imageFileType = $_FILES["uplfile"]["type"];
 	$fileType = pathinfo($target_name, PATHINFO_EXTENSION);
 	
-	if ($fileType != "xls" && $fileType != "xlsx" ) {
-	    echo "Only xls & xlsx files are allowed.";
+	if ($fileType != "xls" && $fileType != "xlsx" && $fileType != "csv" ) {
+	    echo "Only xls, xlsx and csv files are allowed.";
 	    $uploadOk = 0;
 	}
 
@@ -145,24 +238,32 @@ if(isset($_POST["submit"])) {
 
 ?>
 
-<div class="tab-content">
-<div class="div1 tab-pane" id="div1">
-	<!--<form class="form-group" action="" method="POST" enctype="multipart/form-data">
+<div>
+<div class="spoiler" onclick="openclose(this);" title="Click twice the first time" name="div">
+  <p id="1"><strong>Browse</strong></p>
+<div class="div1 contenuSpoiler" id="div1">
+	<form class="form-group" action="" method="POST" enctype="multipart/form-data">
     <strong>Browse to select a file:</strong><br>
-    <input type="file" name="uplfile" class="btn-primary drop" />
-    <input type="submit" name="submit" class="btn-success submit" />
-</form>--> <p> sdkqdjjljlj</p>
+    <input type="file" name="uplfile" class="btn btn-primary drop" />
+    <input type="submit" name="submit" class="btn btn-success submit" />
+</form>
+</div>
 </div>
 
-<div class="div2 tab-pane fade" id="div2">
+<div class="spoiler" onclick="openclose(this);" title="Click twice the first time" name="div">
+  <p id="2"><strong>Search</strong></p>
+<div class="div2 contenuSpoiler" id="div2">
 	<form class="form-group" action="" method="POST">
     <strong>Enter a code: </strong><br>
     <input type="text" name="code" class="drop" /><br>
-    <input type="submit" name="submit2" class="btn-success submit" />
+    <input type="submit" name="submit2" class="btn btn-success submit" />
 </form>
 </div>
+</div>
 
-<div class="div3 tab-pane fade" id="div3">
+<div class="spoiler" onclick="openclose(this);" title="Click twice the first time" name="div">
+  <p id="3" onclick="openclose(this);"><strong>Choose</strong></p>
+<div class="div3 contenuSpoiler" id="div3">
 	<form class="form-group" action="" method="POST">
 		<strong>Choose the type of vehicles:</strong>
 	<div class="dropdown drop">
@@ -177,8 +278,25 @@ if(isset($_POST["submit"])) {
     <option class="caret" value="Vintage Cars">Vintage Cars</option>
   </select>
   </div>
-  <input type="submit" name="submit3" id="submit3" class="btn-success submit" />
+  <input type="submit" name="submit3" id="submit3" class="btn btn-success submit" />
 </form>
+</div>
+</div>
+
+<div class="contain">
+<table class="table table-striped form-group center-block">
+<tr class="active">
+   <form class="form-group form-control-static" action="/submit3.php" method="post">
+    <input type="text" id="input1" name="code" class="inpt form-control" value="">
+    <input type="text" id="input2" name="name" class="inpt form-control" value="">
+    <input type="text" id="input3" name="line" class="inpt form-control" value="">
+    <input type="text" id="input4" name="price" class="inpt form-control" value="">
+    <div class="form-group"><hr/></div>
+    <input type="submit" class="btn btn-success" value="Validate" onsubmit="check();">
+    <input type="reset" class="btn btn-danger" style="float:right" value="Reset">
+  </form>
+</tr>
+</table>
 </div>
 </div>
 
@@ -194,6 +312,8 @@ if(isset($_POST["submit"])) {
       <th>Stock</th>
       <th>Price</th>
       <th>MSRP</th>
+      <th></th>
+      <th></th>
     </tr>
  </thead>   
  <tbody>
@@ -212,7 +332,7 @@ if(isset($_POST["submit"])) {
 
 $sql = "INSERT INTO `products` VALUES (".$result['A'].",".$result['B'].",".$result['C'].",".$result['D'].",".$result['E'].",".$result['F'].",".$result['G'].",".$result['H'].",".$result['I'].")";
 $query = $conn->prepare($sql);
-print($sql);
+//print($sql);
 $query->execute();
 }
 }
@@ -243,30 +363,30 @@ while ($data = $req->fetch())
             {
 ?>
 
-<tr class="active">
-	<td><?php echo $data['productCode']; ?></td>
-	<td><?php echo $data['productName']; ?></td>
-	<td><?php echo $data['productLine']; ?></td>
+<tr id="tab" class="active">
+	<td id="code"><?php echo $data['productCode']; ?></td>
+	<td id="name"><?php echo $data['productName']; ?></td>
+	<td id="type"><?php echo $data['productLine']; ?></td>
 	<td><?php echo $data['productScale']; ?></td>
 	<td><?php echo $data['productVendor']; ?></td>
 	<td><?php echo $data['productDescription']; ?></td>
 	<td><?php echo $data['quantityInStock']; ?></td>
-	<td><?php echo $data['buyPrice']; ?></td>
+	<td id="price"><?php echo $data['buyPrice']; ?></td>
 	<td><?php echo $data['MSRP']; ?></td>
+  <td></td>
+  <td><input type="button" class="btn btn-primary" value="Add to basket" onclick="add()"></td>
+</form>
 </tr>
-
 <?php 
 } 
-
 $req->closeCursor(); 
-
 ?>
-
-
-
 </tbody>
 </table>
-</div>
+
+
+
+
 <!--<?php foreach ($sheetData as $line) {
                 $valuesToInsert = "";
                 foreach ($line as $row) {
