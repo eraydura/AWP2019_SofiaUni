@@ -130,7 +130,7 @@ function openclose(div) {
 
 function add(){
   var code = document.getElementById('code').innerHTML;
-  var name = document.getElementById('name').innerHTML;
+  var name = document.getElementById('prod').innerHTML;
   var line = document.getElementById('type').innerHTML;
   var price = document.getElementById('price').innerHTML;
   var arrayLignes = document.getElementById("tab").innerHTML;
@@ -288,7 +288,7 @@ if(isset($_POST["submit"])) {
 <tr class="active">
    <form class="form-group form-control-static" action="/submit3.php" method="post">
     <input type="text" id="input1" name="code" class="inpt form-control" value="">
-    <input type="text" id="input2" name="name" class="inpt form-control" value="">
+    <input type="text" id="input2" name="prod" class="inpt form-control" value="">
     <input type="text" id="input3" name="line" class="inpt form-control" value="">
     <input type="text" id="input4" name="price" class="inpt form-control" value="">
     <div class="form-group"><hr/></div>
@@ -365,7 +365,7 @@ while ($data = $req->fetch())
 
 <tr id="tab" class="active">
 	<td id="code"><?php echo $data['productCode']; ?></td>
-	<td id="name"><?php echo $data['productName']; ?></td>
+	<td id="prod"><?php echo $data['productName']; ?></td>
 	<td id="type"><?php echo $data['productLine']; ?></td>
 	<td><?php echo $data['productScale']; ?></td>
 	<td><?php echo $data['productVendor']; ?></td>
