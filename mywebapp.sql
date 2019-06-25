@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1:3306
--- Generation Time: Jun 24, 2019 at 01:34 PM
+-- Generation Time: Jun 25, 2019 at 03:58 PM
 -- Server version: 5.7.24
 -- PHP Version: 7.2.14
 
@@ -21,6 +21,39 @@ SET time_zone = "+00:00";
 --
 -- Database: `mywebapp`
 --
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `basket`
+--
+
+DROP TABLE IF EXISTS `basket`;
+CREATE TABLE IF NOT EXISTS `basket` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `code` varchar(50) NOT NULL,
+  `username` varchar(50) NOT NULL,
+  `user_email` varchar(50) NOT NULL,
+  `productname` varchar(50) NOT NULL,
+  `type` varchar(50) NOT NULL,
+  `date` date DEFAULT NULL,
+  `quantity` int(11) NOT NULL DEFAULT '1',
+  `totalprice` int(11) NOT NULL,
+  PRIMARY KEY (`id`),
+  KEY `user_email` (`user_email`)
+) ENGINE=MyISAM AUTO_INCREMENT=29 DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data for table `basket`
+--
+
+INSERT INTO `basket` (`id`, `code`, `username`, `user_email`, `productname`, `type`, `date`, `quantity`, `totalprice`) VALUES
+(1, '', 'Romiche', '', 'Moteur', '', NULL, 1, 50),
+(25, 'S18_3029', 'Romain', 'romain.muckenhirn@gmail.com', '1999 Yamaha Speed Boat', 'Ships', '2019-06-25', 1, 52),
+(24, 'S10_1949', 'Romain', 'romain.muckenhirn@gmail.com', '1952 Alpine Renault 1300', 'Classic Cars', '2019-06-25', 1, 99),
+(26, 'S10_1678', 'Con', 'romain.muckenhirn@g.com', '1969 Harley Davidson Ultimate Chopper', 'Motorcycles', '2019-06-25', 1, 49),
+(27, 'S10_1949', 'Con', 'romain.muckenhirn@g.com', '1952 Alpine Renault 1300', 'Classic Cars', '2019-06-25', 1, 99),
+(28, 'S10_1678', 'Vieux', 'romain.mn@gmail.com', '1969 Harley Davidson Ultimate Chopper', 'Motorcycles', '2019-06-25', 1, 49);
 
 -- --------------------------------------------------------
 
@@ -162,6 +195,27 @@ INSERT INTO `products` (`productCode`, `productName`, `productLine`, `productSca
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `stuffs`
+--
+
+DROP TABLE IF EXISTS `stuffs`;
+CREATE TABLE IF NOT EXISTS `stuffs` (
+  `Name` varchar(1000) NOT NULL,
+  `Price` int(100) NOT NULL,
+  `Picture` varchar(1000) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data for table `stuffs`
+--
+
+INSERT INTO `stuffs` (`Name`, `Price`, `Picture`) VALUES
+('SWEATSHIRT', 56, 'https://m.media-amazon.com/images/I/81nVzZPgN+L._AC_SX255_.jpg'),
+('SWEATSHIRT2', 69, 'https://cdn-gap.akinon.net/products/2019/03/01/112377/6c6043a8-ba38-45f4-ac10-d4274e931c60_size720x960_cropCenter.jpg');
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `users`
 --
 
@@ -174,16 +228,21 @@ CREATE TABLE IF NOT EXISTS `users` (
   `Password` varchar(100) NOT NULL,
   `Telephone` int(15) NOT NULL,
   `Address` varchar(100) NOT NULL,
+  `Gender` varchar(50) NOT NULL,
+  `Picture` varchar(100) NOT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `EMail` (`EMail`)
-) ENGINE=InnoDB AUTO_INCREMENT=17 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=31 DEFAULT CHARSET=utf8;
 
 --
 -- Dumping data for table `users`
 --
 
-INSERT INTO `users` (`id`, `Name`, `Surname`, `EMail`, `Password`, `Telephone`, `Address`) VALUES
-(16, 'Romain', 'Muckenhirn', 'romain.muckenhirn@gmail.com', 'MUCKENHIRNdu22', 633811863, '  12, rue de ta mÃ¨re');
+INSERT INTO `users` (`id`, `Name`, `Surname`, `EMail`, `Password`, `Telephone`, `Address`, `Gender`, `Picture`) VALUES
+(16, 'Romain', 'Muckenhirn', 'romain.muckenhirn@gmail.com', 'MUCKENHIRNdu22', 633811863, '  12, rue de ta mÃ¨re', '', ''),
+(17, 'Con', 'Bien', 'romain.muckenhirn@g.com', 'MUCKENHIRNdu22', 633567986, '  sdgsrge', '', ''),
+(18, 'Maureen', 'Grillon', 'm.g@tamÃ¨re.com', 'MUCKENHIRNdu22', 633512136, '  99 bis rue des plantes', '', ''),
+(27, 'Vieux', 'Juif', 'romain.mn@gmail.com', 'MUCKENHIRNdu22', 123456789, '  tdherh', 'Man', '');
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
