@@ -1,5 +1,11 @@
 <!DOCTYPE html>
-<?php session_start(); ?>
+
+<?php session_start(); 
+require_once("composer/vendor/autoload.php");
+require_once("dbconfig.php");
+ini_set('display_errors','off');
+?>
+
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
@@ -96,6 +102,7 @@ color: black;
 
 }
 
+
 .vehicomm {
   width: 115px;
 }
@@ -132,18 +139,20 @@ jQuery(document).ready(function() {
    });
 });
 
-jQuery(document).ready(function() {
+/*jQuery(document).ready(function() {
       jQuery("#hide").hide()
-   });
-
+   });*/
+   
+  
 function openclose(div) {
         var divContenu = div.getElementsByTagName('div')[0];
-        var one = document.getElementById("1");
-        var two = document.getElementById("2");
-        var three = document.getElementById("3");
+        var one = document.getElementById("1")[0];
+        var two = document.getElementById("2")[0];
+        var three = document.getElementById("3")[0];
 
         if(divContenu.style.display == 'none') {
             divContenu.style.display = 'block';
+            return true;
         } else {
             divContenu.style.display = 'block';
         }
@@ -152,6 +161,14 @@ function openclose(div) {
           divContenu.style.display = 'none';
         }
     }
+
+     function hideDiv() {
+     document.getElementById("hide").style.display = "none";
+     if (openclose(this)) {
+      document.getElementById("hide").style.display = "block";
+     } 
+}
+
 
 /*function add(){
   var code = document.getElementById('code').innerHTML;
@@ -175,7 +192,7 @@ function openclose(div) {
 alert(arrayLignes);
 
 
-  }*/
+  }
 
 function check() {
   var c = document.getElementById('input3').value;
@@ -188,14 +205,14 @@ function check() {
     document.getElementById('input3').style.color = 'red';
     return true;
   }
-}
+}*/
 
 
 
 
 </script>
 </head>
-<body>
+<body onload="hideDiv()">
 
 <nav class="navbar navbar-inverse navbar-fixed-top">
   <div class="container-fluid">
@@ -225,49 +242,6 @@ function check() {
     <li><a data-toggle="tab" href="#div3"><strong>Choose</strong></a></li>
   </ul>-->
 <br>
-
-<?php
-require_once("composer/vendor/autoload.php");
-require_once("dbconfig.php");
-ini_set('display_errors','off');
-
-if(isset($_POST["submit"])) {
-	$uploadOk = 1;
-
-	$target_dir = "uploads/";
-	$target_name = $target_dir . date("Y_m_d") . basename($_FILES["uplfile"]["name"]);
-
-	$imageFileType = $_FILES["uplfile"]["type"];
-	$fileType = pathinfo($target_name, PATHINFO_EXTENSION);
-	
-	if ($fileType != "xls" && $fileType != "xlsx" && $fileType != "csv" ) {
-	    echo "Only xls, xlsx and csv files are allowed.";
-	    $uploadOk = 0;
-	}
-
-	if ($uploadOk == 0) {
-		echo "Sorry, your file was not uploaded.";
-	}
-	else {
-	    if (move_uploaded_file($_FILES["uplfile"]["tmp_name"], $target_name)) {
-	        echo "The file has been uploaded.";
-	        
-	        $reader = new \PhpOffice\PhpSpreadsheet\Reader\Xls();
-			$reader->setReadDataOnly(true);
-			$spreadsheet = $reader->load($target_name);
-			$sheetData = $spreadsheet->getActiveSheet()->toArray(null, true, true, true);
-			//var_dump($sheetData);
-
-
-
-	    } else {
-	        echo "Sorry, there was an error uploading your file.";
-	    }
-	}
-
-}
-
-?>
 
 <div style="height: auto; overflow: hidden;">
 <div class="spoiler1" onclick="openclose(this);" title="Click twice the first time" name="div">
@@ -334,11 +308,51 @@ if(isset($_POST["submit"])) {
 </div>-->
 </div>
 
+<?php
+
+if(isset($_POST["submit"])) {
+  $uploadOk = 1;
+
+  $target_dir = "uploads/";
+  $target_name = $target_dir . date("Y_m_d") . basename($_FILES["uplfile"]["name"]);
+
+  $imageFileType = $_FILES["uplfile"]["type"];
+  $fileType = pathinfo($target_name, PATHINFO_EXTENSION);
+  
+  if ($fileType != "xls" && $fileType != "xlsx" && $fileType != "csv" ) {
+      echo "<strong>Only xls, xlsx and csv files are allowed</strong>";
+      $uploadOk = 0;
+  }
+
+  if ($uploadOk == 0) {
+    echo "<strong>Sorry, your file was not uploaded</strong>";
+  }
+  else {
+      if (move_uploaded_file($_FILES["uplfile"]["tmp_name"], $target_name)) {
+          echo "<strong>The file has been uploaded</strong>";
+          
+          $reader = new \PhpOffice\PhpSpreadsheet\Reader\Xls();
+      $reader->setReadDataOnly(true);
+      $spreadsheet = $reader->load($target_name);
+      $sheetData = $spreadsheet->getActiveSheet()->toArray(null, true, true, true);
+      //var_dump($sheetData);
+
+
+
+      } else {
+          echo "Sorry, there was an error uploading your file.";
+      }
+  }
+
+}
+
+?>
+
+
 
 <table id="tab" class="table table-striped form-group center-block">
  <thead class="thead-light thead"> 
-  <div id="hide">
-  <tr class="bg-info" style="border-radius: 50px;">
+  <tr class="bg-info" id="hide" style="border-radius: 50px;">
       <th>Code</th>
       <th>Name</th>
       <th>Type</th>
@@ -351,9 +365,9 @@ if(isset($_POST["submit"])) {
       <th></th>
       <th></th>
     </tr>
-  </div>
  </thead>   
  <tbody>
+
 <?php 
 
 $servername = "localhost";
