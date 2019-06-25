@@ -48,8 +48,7 @@ div.spoiler1 {
     margin-top: 50px; 
     padding: 10px;
     width: 30%;
-    border: 1px solid black;
-    cursor: pointer;
+    /*border: 1px solid black;*/
     float: left;
     position: relative;
 }
@@ -58,8 +57,7 @@ div.spoiler2 {
     margin-top: 50px; 
     padding: 10px;
     width: 24%;
-    border: 1px solid black;
-    cursor: pointer;
+    /*border: 1px solid black;*/
     float: left;
     position: relative;
 }
@@ -68,11 +66,14 @@ div.spoiler3 {
     margin-top: 50px; 
     padding: 10px;
     width: 24%;
-    border: 1px solid black;
-    cursor: pointer;
+    /*border: 1px solid black;*/
     float: left;
     position: relative;
 
+}
+
+.cursor{
+  cursor: pointer;
 }
 
 div.spoiler1 div.contenuSpoiler {
@@ -105,10 +106,18 @@ color: black;
 
 .contain{
   float: right;
-  margin: 100px 50px 0 0;
-  display: inline;
-
+  margin: 100px 25px 0 0;
+  width: 200px;
 }
+
+.bask{
+  border: 1px solid #f5f5f5;
+  border-radius: 5px;
+  padding: 5px 5px 5px 5px;
+  margin-bottom: 5px;
+}
+
+
 
 </style>
 
@@ -132,8 +141,8 @@ function openclose(div) {
         } else {
             divContenu.style.display = 'block';
         }
-        if (one.clicked == true || two.clicked == true || three.clicked == true ) {
-          echo
+        if (divContenu.clicked == true || two.clicked == true || three.clicked == true ) {
+          
           divContenu.style.display = 'none';
         }
     }
@@ -165,6 +174,7 @@ function check() {
     alert("tg");
   }
   else{
+    document.getElementById('input3').style.color = 'red';
     return true;
   }
 }
@@ -248,9 +258,9 @@ if(isset($_POST["submit"])) {
 
 ?>
 
-<div style="border: 1px solid black; height: auto; overflow: hidden;">
+<div style="height: auto; overflow: hidden;">
 <div class="spoiler1" onclick="openclose(this);" title="Click twice the first time" name="div">
-  <p id="1"><strong>Browse</strong></p>
+  <p id="1" class="btn btn-info cursor"><strong>Browse</strong></p>
 <div class="div1 contenuSpoiler" id="div1">
 	<form class="form-group" action="" method="POST" enctype="multipart/form-data">
     <strong>Browse to select a file:</strong><br>
@@ -262,7 +272,7 @@ if(isset($_POST["submit"])) {
 
 
 <div class="spoiler2" onclick="openclose(this);" title="Click twice the first time" name="div">
-  <p id="2"><strong>Search</strong></p>
+  <p id="2" class="btn btn-info cursor"><strong>Search</strong></p>
 <div class="div2 contenuSpoiler" id="div2">
 	<form class="form-group" action="" method="POST">
     <strong>Enter a code: </strong><br>
@@ -273,7 +283,7 @@ if(isset($_POST["submit"])) {
 </div>
 
 <div class="spoiler3" onclick="openclose(this);" title="Click twice the first time" name="div">
-  <p id="3" onclick="openclose(this);"><strong>Choose</strong></p>
+  <p id="3" class="btn btn-info cursor" onclick="openclose(this);"><strong>Choose</strong></p>
 <div class="div3 contenuSpoiler" id="div3">
 	<form class="form-group" action="" method="POST">
 		<strong>Choose the type of vehicles:</strong>
@@ -299,13 +309,14 @@ if(isset($_POST["submit"])) {
 <table class="table table-striped form-group center-block">
 <tr class="active">
    <form class="form-group form-control-static" action="/submit3.php" method="post">
+    <div class="bask">
     <input type="text" id="input1" name="code" class="inpt form-control" value="">
     <input type="text" id="input2" name="prod" class="inpt form-control" value="">
-    <input type="text" id="input3" name="line" class="inpt form-control" value="">
+    <input type="text" id="input3" name="line" class="inpt form-control" value="" onblur="check();">
     <input type="text" id="input4" name="price" class="inpt form-control" value="">
-    <div class="form-group"><hr/></div>
-    <input type="submit" class="btn btn-success" value="Validate" onsubmit="check();">
-    <input type="reset" class="btn btn-danger" style="float:right" value="Reset">
+    </div>
+    <input type="submit" class="btn btn-success" style="margin-left: 10px;" value="Validate">
+    <input type="reset" class="btn btn-danger" style="float:right; margin-right: 10px;" value="Reset">
   </form>
 </tr>
 </table>
