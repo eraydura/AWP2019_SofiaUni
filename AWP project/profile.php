@@ -42,6 +42,22 @@ $baglan = mysqli_connect("localhost","root","","mywebapp");
 }
 
 </style>
+<script>
+
+
+  var conteneur = document.getElementById('picture');
+  var img = document.createElement('img');
+
+  if("<?php echo $_SESSION["gender"];?>" == "Man"){
+      img.src = "user.png";
+      conteneur.appendChild(img);
+  }
+  else{
+      img.src = "vehicomm.png";
+      conteneur.appendChild(img);
+  }
+
+  </script>
 </head>
 
 <body> 
@@ -70,8 +86,8 @@ $baglan = mysqli_connect("localhost","root","","mywebapp");
         <div class="col-sm-12 ">
             <div class="well well-sm">
                 <div class="row">
-                    <div  class="col-sm-6 col-md-4">
-                        <img style="width:350px; height: 450px " src="<?php echo $_SESSION["picture"]; ?>" alt="picture"/>
+                    <div  class="col-sm-6 col-md-4" id="picture">fvsf
+                        <!--<img style="width:350px; height: 450px " src="<?php echo $_SESSION["picture"]; ?>" alt="picture"/>-->
                     </div>
                     <div class="col-sm-6 ">
                         <h1>
@@ -119,11 +135,11 @@ echo $_SESSION["gender"] . "<br>";
                             </ul>
                         </div>
  <?php
-	$sqld= "SELECT id FROM users WHERE username='$_SESSION[name]' ";
+	$sqld= "SELECT id FROM users WHERE EMail='$_SESSION[email]' ";
 		$result5 = mysqli_query($baglan, $sqld);
-	if (mysqli_num_rows($result5) > 0) {
+	if (!$result5 || mysqli_num_rows($result5) > 0) {
 		while($row5 = mysqli_fetch_assoc($result5)) {
-			$_SESSION["id"] = $row5[id];
+			$_SESSION["id"] = $row5["id"];
 		}
 	}
 	?>

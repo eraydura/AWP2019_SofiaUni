@@ -1,4 +1,32 @@
-﻿<?php
+﻿<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+	<meta charset="utf-8">
+<link rel="stylesheet" href="resources/css/bootstrap.min.css" type="text/css"  />
+<style> 
+
+body {
+background-image:url(paysage.jpg);
+background-repeat: no-repeat;
+background-size: cover;
+background-attachment: fixed;
+}
+   
+form {                                         
+    margin: 5 auto; 
+    width: 465px; 
+    border-radius: 10px;
+    background-color: rgba(95,95,95,0.4);
+    padding:20px;
+}
+
+</style>
+</head>
+<body>
+
+<form>
+	<?php
 
 // Start the session
 session_start();
@@ -23,18 +51,19 @@ if ($conn->connect_error) {
 $Password      =    $_POST["Password"];
 //$Pass_hash = password_hash($Password, PASSWORD_DEFAULT);
  $EMail   =    $_POST["EMail"];
-// $gender   =    $_POST["gender"];
-//$pic   =    $_POST['pic'];
+$Gender   =    $_POST["gender"];
+$Pic   =    $_POST['pic'];
 
-$sql = "INSERT INTO users (Name, Surname, Telephone, Address, Password, EMail)
-VALUES ('$Name' , '$Surname','$Telephone','$Address','$Password','$EMail')";
+$sql = "INSERT INTO users (Name, Surname, Telephone, Address, Password, EMail, Gender, Picture)
+VALUES ('$Name' , '$Surname','$Telephone','$Address','$Password','$EMail', '$Gender', '$Pic')";
 
 if ($conn->query($sql) === TRUE) {
-    echo "New record created successfully";
+    echo "<strong>New record created successfully</strong>";
 	header("Refresh: 3; url=http://localhost/profile.php"); 
 } else {
-    echo "Error: " . $sql . "<br>" . $conn->error;
-    header("Refresh: 3; url=http://localhost/register.php"); 
+    echo "<strong>Error: " . $conn->error. "</strong><br>";
+    //header("Refresh: 3; url=http://localhost/register.php");on
+    echo "<a href='register.php'><input type='button' class='btn btn-primary' value='Back'></a>";
 }
 
 $conn->close();
@@ -48,8 +77,11 @@ $_SESSION["email"] = $_POST["EMail"];
 $_SESSION["surname"] = $_POST["Surname"];
 $_SESSION["adress"] = $_POST["Address"];
 $_SESSION["telephone"] = $_POST["Telephone"];
-/*$_SESSION["card"] = $_POST["Card"];
-$_SESSION["gender"] = $_POST["gender"];*/
+//$_SESSION["card"] = $_POST["Card"];
+$_SESSION["gender"] = $_POST["gender"];
 $_SESSION["picture"]=$_POST['pic'];
 //echo "Session variables are set.";
 ?>
+</form>
+</body>
+</html>

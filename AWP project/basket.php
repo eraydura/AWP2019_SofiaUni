@@ -82,7 +82,7 @@ if (mysqli_query($baglan, $sql)) {
 $result = mysqli_query($baglan, $sql);
 
 
-if (mysqli_num_rows($result) > 0) {
+if (!$result || mysqli_num_rows($result) > 0) {
     // output data of each row
     while($row = mysqli_fetch_assoc($result)) {
         echo "<li name=".$row["stuff"]." > <h1>".$row["quantity"]." X <img width='180' height='180' src=".$row["stuff"]." ></h1> <br> </br> <form action='basket.php' method='post'>  <input style=' width:150px; height:50px; border:3px black solid ' type='number' name='number' value='1' min='1' max='1000' step='1'/> <input style='display: none;' name='a' value=".$row["stuff"]." > </input>  <button class='btn btn-info btn-lg' type='submit' name='insert' value='add'> CHANGE QUANTITY</button> <button class='btn btn-info btn-lg' type='submit' name='delete' value='delete'> DELETE</button>  <br> </br></form> </li>";

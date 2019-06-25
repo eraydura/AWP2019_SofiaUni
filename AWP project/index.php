@@ -44,38 +44,46 @@ thead{
 	margin-left: 50px
 }
 
-div.spoiler {
+div.spoiler1 {
+    margin-top: 50px; 
     padding: 10px;
-    width: 50%;
-    /*border: 1px solid black;*/
-    cursor: pointer;
-    margin-right: 500px;
-    float: left;
-
-}
-
-/*div.spoiler2 {
-    padding: 10px;
-    width: 50%;
+    width: 30%;
     border: 1px solid black;
     cursor: pointer;
-    margin-right: 500px;
+    float: left;
+    position: relative;
+}
 
+div.spoiler2 {
+    margin-top: 50px; 
+    padding: 10px;
+    width: 24%;
+    border: 1px solid black;
+    cursor: pointer;
+    float: left;
+    position: relative;
 }
 
 div.spoiler3 {
+    margin-top: 50px; 
     padding: 10px;
-    width: 50%;
+    width: 24%;
     border: 1px solid black;
     cursor: pointer;
-    margin-right: 500px;
+    float: left;
+    position: relative;
 
-}*/
-
-div.spoiler div.contenuSpoiler {
-    display: none;
 }
 
+div.spoiler1 div.contenuSpoiler {
+    display: none;
+}
+div.spoiler2 div.contenuSpoiler {
+    display: none;
+}
+div.spoiler3 div.contenuSpoiler {
+    display: none;
+}
 .drop{
 	margin-bottom: 5px;
 }
@@ -97,7 +105,9 @@ color: black;
 
 .contain{
   float: right;
-  padding-left: 20px;
+  margin: 100px 50px 0 0;
+  display: inline;
+
 }
 
 </style>
@@ -238,8 +248,8 @@ if(isset($_POST["submit"])) {
 
 ?>
 
-<div>
-<div class="spoiler" onclick="openclose(this);" title="Click twice the first time" name="div">
+<div style="border: 1px solid black; height: auto; overflow: hidden;">
+<div class="spoiler1" onclick="openclose(this);" title="Click twice the first time" name="div">
   <p id="1"><strong>Browse</strong></p>
 <div class="div1 contenuSpoiler" id="div1">
 	<form class="form-group" action="" method="POST" enctype="multipart/form-data">
@@ -250,7 +260,8 @@ if(isset($_POST["submit"])) {
 </div>
 </div>
 
-<div class="spoiler" onclick="openclose(this);" title="Click twice the first time" name="div">
+
+<div class="spoiler2" onclick="openclose(this);" title="Click twice the first time" name="div">
   <p id="2"><strong>Search</strong></p>
 <div class="div2 contenuSpoiler" id="div2">
 	<form class="form-group" action="" method="POST">
@@ -261,7 +272,7 @@ if(isset($_POST["submit"])) {
 </div>
 </div>
 
-<div class="spoiler" onclick="openclose(this);" title="Click twice the first time" name="div">
+<div class="spoiler3" onclick="openclose(this);" title="Click twice the first time" name="div">
   <p id="3" onclick="openclose(this);"><strong>Choose</strong></p>
 <div class="div3 contenuSpoiler" id="div3">
 	<form class="form-group" action="" method="POST">
@@ -283,6 +294,7 @@ if(isset($_POST["submit"])) {
 </div>
 </div>
 
+
 <div class="contain">
 <table class="table table-striped form-group center-block">
 <tr class="active">
@@ -299,6 +311,7 @@ if(isset($_POST["submit"])) {
 </table>
 </div>
 </div>
+
 
 <table class="table table-striped form-group center-block">
  <thead class="thead-light thead"> 

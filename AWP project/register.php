@@ -108,21 +108,27 @@ form {
     <div class="form-group">
       <p><strong>Address*</strong><textarea class="form-control" rows="5" name="Address" placeholder="Address">  </textarea></p> </div>
 
-      <div class="dropdown">
+     <!-- <div class="dropdown">
     <select class="btn btn-default dropdown-toggle" id="">
     <option class="caret" value="">--Gender--</option>
     <option class="caret" value="man">Man</option>
     <option class="caret" value="woman">Woman</option>
   </select>
-  </div> <br>
+  </div> -->
+
+  <div class="radio">
+    <label class="radio-inline"><input type="radio" class="custom-control-input" name="gender" value="Man"><strong>Man</strong></label>
+    <label class="radio-inline"><input type="radio" class="custom-control-input" name="gender" value="Woman"><strong>Woman</strong></label>
+  </div><br>
 
   
      <div class="input-group">
       <span class="input-group-addon">
-      https://example.com/users/</span>
-   <input type="text" class="form-control" name="pic" pattern="(http[^\s]+(jpg|jpeg|png|tiff)\b)" ></span> </p></div>
-     
-      <div class="form-group"><hr/></div> 
+      Select file</span>
+      <input type="file" name="pic" class="btn btn-primary drop" />
+  </div>
+
+     <div class="form-group"><hr/></div> 
 
       <p>
        <input class="btn btn-success" type="submit" value="Submit" name="Submit">      
