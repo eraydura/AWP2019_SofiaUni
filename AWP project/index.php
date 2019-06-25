@@ -1,10 +1,12 @@
 <!DOCTYPE html>
+<?php session_start(); ?>
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <title>Products</title>
 <link rel="stylesheet" href="resources/css/bootstrap.min.css" type="text/css"  />
 <link rel="stylesheet" href="resources/css/style.css" type="text/css" />
+<script src="jquery-3.4.1.min.js"></script>
 
 <style>
 
@@ -47,7 +49,7 @@ thead{
 div.spoiler1 {
     margin-top: 50px; 
     padding: 10px;
-    width: 30%;
+    width: 32%;
     /*border: 1px solid black;*/
     float: left;
     position: relative;
@@ -56,7 +58,7 @@ div.spoiler1 {
 div.spoiler2 {
     margin-top: 50px; 
     padding: 10px;
-    width: 24%;
+    width: 32%;
     /*border: 1px solid black;*/
     float: left;
     position: relative;
@@ -65,7 +67,7 @@ div.spoiler2 {
 div.spoiler3 {
     margin-top: 50px; 
     padding: 10px;
-    width: 24%;
+    width: 32%;
     /*border: 1px solid black;*/
     float: left;
     position: relative;
@@ -130,6 +132,10 @@ jQuery(document).ready(function() {
    });
 });
 
+jQuery(document).ready(function() {
+      jQuery("#hide").hide()
+   });
+
 function openclose(div) {
         var divContenu = div.getElementsByTagName('div')[0];
         var one = document.getElementById("1");
@@ -147,24 +153,29 @@ function openclose(div) {
         }
     }
 
-function add(){
+/*function add(){
   var code = document.getElementById('code').innerHTML;
   var name = document.getElementById('prod').innerHTML;
   var line = document.getElementById('type').innerHTML;
   var price = document.getElementById('price').innerHTML;
   var arrayLignes = document.getElementById("tab").innerHTML;
-  var longueur = arrayLignes.length; 
-//alert(arrayLignes);
-//alert(longueur);
-
-
-document.getElementById('input1').value = code;
-document.getElementById('input2').value = name;
-document.getElementById('input3').value = line;
-document.getElementById('input4').value = price;
+  var tr = document.getElementById("tr").innerHTML;
+  var longueur = tr.length; 
+  var trou = document.getElementsByClassName("trou");
+  //alert(tr);
+  document.getElementById('input1').value = code;
+  document.getElementById('input2').value = name;
+  document.getElementById('input3').value = line;
+  document.getElementById('input4').value = price;
+  
+/*for (var i = 0; i < trou.length; i++) {
+  trou[i].setAttribute("id", "code" + i);
 
 }
+alert(arrayLignes);
 
+
+  }*/
 
 function check() {
   var c = document.getElementById('input3').value;
@@ -276,7 +287,7 @@ if(isset($_POST["submit"])) {
 <div class="div2 contenuSpoiler" id="div2">
 	<form class="form-group" action="" method="POST">
     <strong>Enter a code: </strong><br>
-    <input type="text" name="code" class="drop" /><br>
+    <input type="text" name="code" style="margin-bottom: 20px;" class="drop" /><br>
     <input type="submit" name="submit2" class="btn btn-success submit" />
 </form>
 </div>
@@ -288,7 +299,7 @@ if(isset($_POST["submit"])) {
 	<form class="form-group" action="" method="POST">
 		<strong>Choose the type of vehicles:</strong>
 	<div class="dropdown drop">
-    <select class="btn btn-default dropdown-toggle" name="line" id="line">
+    <select class="btn btn-default dropdown-toggle" style="margin-bottom: 3px;" name="line" id="line">
     <option class="caret">--Choose--</option>
     <option class="caret" value="Classic Cars">Classic Cars</option>
     <option class="caret" value="Motorcycles">Motorcycles</option>
@@ -305,7 +316,7 @@ if(isset($_POST["submit"])) {
 </div>
 
 
-<div class="contain">
+<!--<div class="contain">
 <table class="table table-striped form-group center-block">
 <tr class="active">
    <form class="form-group form-control-static" action="/submit3.php" method="post">
@@ -320,12 +331,13 @@ if(isset($_POST["submit"])) {
   </form>
 </tr>
 </table>
-</div>
+</div>-->
 </div>
 
 
-<table class="table table-striped form-group center-block">
+<table id="tab" class="table table-striped form-group center-block">
  <thead class="thead-light thead"> 
+  <div id="hide">
   <tr class="bg-info" style="border-radius: 50px;">
       <th>Code</th>
       <th>Name</th>
@@ -339,25 +351,54 @@ if(isset($_POST["submit"])) {
       <th></th>
       <th></th>
     </tr>
+  </div>
  </thead>   
  <tbody>
-<?php if(isset($_POST["submit"])) {
+<?php 
+
+$servername = "localhost";
+$username = "root";
+$password = "";
+$dbname = "mywebapp";
+
+// Create connection
+$conn = new mysqli($servername, $username, $password, $dbname);
+// Check connection
+if ($conn->connect_error) {
+    die("Connection failed: " . $conn->connect_error);
+}
+
+if(isset($_POST["submit"])) {
 	foreach ($sheetData as $result) {
+
+    $sql = "INSERT INTO `products` VALUES ('".$result['A']."','".$result['B']."','".$result['C']."','".$result['D']."','".$result['E']."','".$result['F']."','".$result['G']."','".$result['H']."','".$result['I']."')";
+
+if ($conn->query($sql) === TRUE) {
+    echo "<strong>New record created successfully</strong>";
+} else {
+    echo "<strong>Error: " . $conn->error. "</strong><br>";
+    }
+
+if (mysqli_error() == '1062' ) {
+    echo 'Data already in the database';
+}
+
 	?>
 	<tr class="active">
-	<td><?php echo $result['A']; ?></td>
-	<td><?php echo $result['B']; ?></td>
-	<td><?php echo $result['C']; ?></td>
+	<td id="code"><?php echo $result['A']; ?></td>
+	<td id="prod"><?php echo $result['B']; ?></td>
+	<td id="type"><?php echo $result['C']; ?></td>
 	<td><?php echo $result['D']; ?></td>
 	<td><?php echo $result['E']; ?></td>
 	<td><?php echo $result['F']; ?></td>
+  <td><?php echo $result['G']; ?></td>
+  <td id="price"><?php echo $result['H']; ?></td>
+  <td><?php echo $result['I']; ?></td>
+  <td></td>
+  <td><a href="basket1.php?action=ajout&amp;l=<?php echo $result['A']; ?>&amp;q=1&amp;p=<?php echo $result['H']; ?>" onclick="window.location.href(this.href, '', 
+'toolbar=no, location=no, directories=no, status=yes, scrollbars=yes, resizable=yes, copyhistory=no, width=600, height=350'); return false;"><input type="button" class="btn btn-primary" value="Add to basket"></a></td>
 </tr>
 <?php 
-
-$sql = "INSERT INTO `products` VALUES (".$result['A'].",".$result['B'].",".$result['C'].",".$result['D'].",".$result['E'].",".$result['F'].",".$result['G'].",".$result['H'].",".$result['I'].")";
-$query = $conn->prepare($sql);
-//print($sql);
-$query->execute();
 }
 }
 
@@ -387,8 +428,8 @@ while ($data = $req->fetch())
             {
 ?>
 
-<tr id="tab" class="active">
-	<td id="code"><?php echo $data['productCode']; ?></td>
+<tr id="tr" class="active">
+	<td id="code" class="trou"><?php echo $data['productCode']; ?></td>
 	<td id="prod"><?php echo $data['productName']; ?></td>
 	<td id="type"><?php echo $data['productLine']; ?></td>
 	<td><?php echo $data['productScale']; ?></td>
@@ -398,16 +439,19 @@ while ($data = $req->fetch())
 	<td id="price"><?php echo $data['buyPrice']; ?></td>
 	<td><?php echo $data['MSRP']; ?></td>
   <td></td>
-  <td><input type="button" class="btn btn-primary" value="Add to basket" onclick="add()"></td>
-</form>
+  <td>
+    <a href="basket1.php?action=ajout&amp;l=<?php echo $data['productCode']; ?>&amp;q=1&amp;p=<?php echo $data['buyPrice']; ?>" onclick="window.location.href(this.href, '', 
+'toolbar=no, location=no, directories=no, status=yes, scrollbars=yes, resizable=yes, copyhistory=no, width=600, height=350'); return false;"><input type="button" class="btn btn-primary" value="Add to basket"></a></td>
+  
 </tr>
+
 <?php 
 } 
 $req->closeCursor(); 
 ?>
 </tbody>
 </table>
-
+</div>
 
 
 
