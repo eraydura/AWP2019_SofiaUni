@@ -11,13 +11,13 @@
 <!------ Include the above in your HEAD tag ---------->
 <?php
 session_start();
+ini_set('display_errors','off');
 ?>
 <?php
 $baglan = mysqli_connect("localhost","root","","mywebapp");
 	if($baglan === false){
     die("ERROR: Could not connect. " . mysqli_connect_error());
 }
-
 
 ?>
 <meta charset="utf-8">
@@ -31,21 +31,11 @@ $baglan = mysqli_connect("localhost","root","","mywebapp");
   background-attachment: fixed;
 }
 
-.vehicomm {
-  width: 115px;
-}
-
-.form {                                         
-    margin: auto; 
-    border-radius: 10px;
-    background-color: rgba(95,95,95,0.4);
-}
-
 </style>
 <script>
 
 
-  var conteneur = document.getElementById('picture');
+ /* var conteneur = document.getElementById('picture');
   var img = document.createElement('img');
 
   if("<?php echo $_SESSION["gender"];?>" == "Man"){
@@ -55,7 +45,7 @@ $baglan = mysqli_connect("localhost","root","","mywebapp");
   else{
       img.src = "vehicomm.png";
       conteneur.appendChild(img);
-  }
+  }*/
 
   </script>
 </head>
@@ -70,12 +60,21 @@ $baglan = mysqli_connect("localhost","root","","mywebapp");
     <ul class="nav navbar-nav">
       <li><a href="main.php">Home</a></li>
       <li><a href="index.php">Products</a></li>
-      <li><a href="basket.php">My Basket</a></li>
+      <li><a href="basket1.php">My Basket</a></li>
       <li><a href="#">About</a></li>
     </ul>
      <ul class="nav navbar-nav navbar-right">
-        <li><a href="register.php"><span class=""></span> Sign Up</a></li>
-        <li><a href="login.php"><img src="user.png" width="20px"> Login</a></li>
+          <?php
+      if(isset($_SESSION["email"])){
+        echo "<li><a href='#' style='color:white; cursor:default'>
+        <img src='user.png' width='20px'><i> Hello ".$_SESSION["name"]."</i></a></li>";
+        echo "<li><a href='logout.php'><img src='logout.png' width='20px'> Log Out</a></li>";
+      }
+      else{
+        echo "<li><a href='register.php'> Sign Up</a></li>
+        <li><a href='login.php'><img src='user.png' width='20px'> Log In</a></li>";
+      }
+      ?>
       </ul>
   </div>
 </nav>
@@ -84,16 +83,22 @@ $baglan = mysqli_connect("localhost","root","","mywebapp");
 <div class="container form">
     <div class="row">
         <div class="col-sm-12 ">
-            <div class="well well-sm">
+            <div class="well well-sm prof">
                 <div class="row">
-                    <div  class="col-sm-6 col-md-4" id="picture">fvsf
-                        <!--<img style="width:350px; height: 450px " src="<?php echo $_SESSION["picture"]; ?>" alt="picture"/>-->
+                    <div  class="col-sm-6 col-md-4" id="picture">
+                       <?php
+                      if(isset($_SESSION["email"])){
+                        echo "<img src='homer.jpg' alt='picture'/>";
+                      }
+                        ?>
+                        
                     </div>
                     <div class="col-sm-6 ">
-                        <h1>
-                            <?php
+                        <h1><i>
+                             <?php
+                            if(isset($_SESSION["email"])){
 // Echo session variables that were set on previous page
-echo $_SESSION["name"]." ".$_SESSION["surname"]. "<br>";
+echo $_SESSION["name"]." ".$_SESSION["surname"]. "</i><br>";
 ?></h1>
                        
                         <p>
@@ -110,39 +115,33 @@ echo $_SESSION["telephone"] . "<br>";
                             <br />
                               <h4><cite title="San Francisco, USA">  <i class="glyphicon glyphicon-map-marker"> <?php
 // Echo session variables that were set on previous page
-echo $_SESSION["adress"] . "<br>";
+echo $_SESSION["adress"] . "<br>";}
 ?>
                         </i></cite></h4>
-					</br>
-          <i class="glyphicon glyphicon-asterisk"></i> <?php
-// Echo session variables that were set on previous page
-echo $_SESSION["gender"] . "<br>";
-?></p></h3>
+          </br>
+</p></h3>
                         <!-- Split button -->
                         <div class="btn-group" >
-                        
-                            <button  class="btn btn-primary" onClick="location.href='main.php'" type="submit" name="submit">
-                                Exit Profile </button>
+                        <?php if(isset($_SESSION["email"])){
+                           echo " <button  class=\"btn btn-primary\" onClick=\"location.href='main.php'\" type=\"submit\" name=\"submit\">";
+                           echo "     Exit Profile </button>";
                            
-					
+          
                               
-                            <button  class="btn btn-primary" onClick="location.href='edit.php'" type="submit" name="submit9">
-                                Edit Profile </button>
+                            echo "<button  class=\"btn btn-primary\" onClick=\"location.href='edit.php'\" type=\"submit\" name=\"submit9\">";
+                             echo "   Edit Profile </button>";
                              
-							
-						
-                           <button class="btn btn-primary"  type="button" onClick="location.href='basket.php'">Basket</button>
+              
+            
+                          echo " <button class=\"btn btn-primary\"  type=\"button\" onClick=\"location.href='basket1.php'\">Basket</button>";
+                        }
+                        else
+                          echo "<p style=\"color:red;\" class=\"bg-danger\"><strong>Please Log In </strong></p>";
+                        
+                          ?>
                             </ul>
                         </div>
- <?php
-	$sqld= "SELECT id FROM users WHERE EMail='$_SESSION[email]' ";
-		$result5 = mysqli_query($baglan, $sqld);
-	if (!$result5 || mysqli_num_rows($result5) > 0) {
-		while($row5 = mysqli_fetch_assoc($result5)) {
-			$_SESSION["id"] = $row5["id"];
-		}
-	}
-	?>
+
                     
 
                     </div>

@@ -2,6 +2,7 @@
 <html>
 <?php
 session_start();
+ini_set('display_errors','off');
 
 $baglan = mysqli_connect("localhost","root","","mywebapp");
   if($baglan === false){
@@ -26,9 +27,6 @@ body {
   background-attachment: fixed;
 }
 
-.vehicomm {
-  width: 115px;
-}
 
 </style>
 </head>
@@ -42,12 +40,21 @@ body {
     <ul class="nav navbar-nav">
       <li class="active"><a href="#">Home</a></li>
       <li><a href="index.php">Products</a></li>
-      <li><a href="basket.php">My Basket</a></li>
+      <li><a href="basket1.php">My Basket</a></li>
       <li><a href="#">About</a></li>
     </ul>
      <ul class="nav navbar-nav navbar-right">
-        <li><a href="register.php"><span class=""></span> Sign Up</a></li>
-        <li><a href="login.php"><img src="user.png" width="20px"> Login</a></li>
+         <?php
+      if(isset($_SESSION["email"])){
+        echo "<li><a href='#' style='color:white; cursor:default'>
+        <img src='user.png' width='20px'><i> Hello ".$_SESSION["name"]."</i></a></li>";
+        echo "<li><a href='logout.php'><img src='logout.png' width='20px'> Log Out</a></li>";
+      }
+      else{
+        echo "<li><a href='register.php'> Sign Up</a></li>
+        <li><a href='login.php'><img src='user.png' width='20px'> Log In</a></li>";
+      }
+      ?>
       </ul>
   </div>
 </nav>

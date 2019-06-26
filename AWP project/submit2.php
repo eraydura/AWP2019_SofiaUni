@@ -33,10 +33,10 @@ if (mysqli_num_rows($result) > 0) {
 		      //$_SESSION["gender"]=$row["gender"];
     }
     echo "Connection in progress....";
-	header("Refresh: 3; url=http://localhost/profile.php"); 
+	header("Refresh: 1; url=http://localhost/profile.php"); 
 } else {
     echo "Unknow Account// Please try again !";
-    header("Refresh: 3; url=http://localhost/login.php");
+    header("Refresh: 1; url=http://localhost/login.php");
 }
 
 mysqli_close($conn);

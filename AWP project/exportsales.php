@@ -1,7 +1,7 @@
 <?php 
-include 'connectdatabase.php';
+ include 'connectdatabase.php';
 // Nom de la table à exporter 
-$db_record = 'users'; 
+$db_record = 'sales'; 
  
 // Nom du fichier CSV à exporter 
 $csv_filename = $db_record.'_'.date('Y-m-d').'.csv'; 

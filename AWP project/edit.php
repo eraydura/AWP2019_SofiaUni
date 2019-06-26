@@ -1,6 +1,7 @@
 ﻿<!doctype html>
 <?php
 session_start();
+
 ?>
 <?php
 $baglan = mysqli_connect("localhost","root","","mywebapp");
@@ -13,6 +14,7 @@ $baglan = mysqli_connect("localhost","root","","mywebapp");
 <html>
 <head>
 <meta charset="utf-8">
+<title>Edit Profile</title>
 <link rel="stylesheet" href="resources/css/bootstrap.min.css" type="text/css"  />
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
@@ -52,7 +54,8 @@ form {
 <body>
 
 <form action="#" method="post">
-<select name="Color">
+<div class="dropdown drop">
+<select name="Color" class="btn btn-default dropdown-toggle">
 <option>--Choose--</option>
 <option value="Name">Name</option>
 <option value="Surname">Surname</option>
@@ -60,120 +63,113 @@ form {
 <option value="Email">Email</option>
 <!--<option value="Card">Card</option>-->
 <option value="Address">Address</option>
-<option value="Picture">Picture</option>
+<!--<option value="Picture">Picture</option>-->
 <option value="Telephone">Telephone</option>
 </select>
-<input type="submit" name="submit" value="Get Selected Values" />
+</div>
+<br>
+<input type="submit" class="btn btn-info" name="submit" value="Get Selected Values" />
+<a href="profile.php" style="float: right"><input type=button class="btn btn-warning" value="Back"></a>
+<hr/>  
 </form>
 <?php
 if(isset($_POST['submit'])){
 $selected_val = $_POST['Color']; 
 if($selected_val=="Name"){
-	echo"<form action='#' method='post'><label>Enter a new Name:</label><input name='name' class='form-control' type='text' > </input> <input class='btn btn-primary' type='submit' name='submit1' /> </form> ";
+	echo"<form action='#' method='post'><input name='name' class='form-control' type='text' > </input><br> <input type='submit' class='btn btn-success' name='submit1' /> </form> ";
 }
 	if($selected_val=="Surname"){
-	echo"<form action='#' method='post'><label>Enter a new Surname:</label><input class='form-control' type='text' name='surname' > </input> <input class='btn btn-primary' type='submit' name='submit2' /> </form> ";
+	echo"<form action='#' method='post'><input class='form-control' type='text' name='surname' > </input><br> <input type='submit'  class='btn btn-success'name='submit2' /> </form> ";
 }
 	if($selected_val=="Password"){
-	echo"<form action='#' method='post'><label>Enter a new Password:</label><input pattern='(?=^.{8,}$)((?=.*\d)|(?=.*\W+))(?![.\n])(?=.*[A-Z])(?=.*[a-z]).*$' class='form-control' type='password' title='Must contain at least one number and one uppercase and lowercase letter, and at least 8 or more characters'  name='password'> <input class='btn btn-primary' type='submit' name='submit3' /> </form> ";
+	echo"<form action='#' method='post'><input pattern='(?=^.{8,}$)((?=.*\d)|(?=.*\W+))(?![.\n])(?=.*[A-Z])(?=.*[a-z]).*$' class='form-control' type='password' title='Must contain at least one number and one uppercase and lowercase letter, and at least 8 or more characters'  name='password'><br> <input type='submit'  class='btn btn-success'name='submit3' /> </form> ";
 }
 	if($selected_val=="Email"){
-	echo"<form action='#' method='post'><label>Enter a new Email:</label><input class='form-control' pattern='[^@\s]+@[^@\s]+\.[^@\s]+' title='Invalid email address' type='text'  name='email'> <input class='btn btn-primary' type='submit' name='submit4' /> </form> ";
+	echo"<form action='#' method='post'><input class='form-control' pattern='[^@\s]+@[^@\s]+\.[^@\s]+' title='Invalid email address' type='text'  name='email'><br> <input type='submit'  class='btn btn-success'name='submit4' /> </form> ";
 }
 	if($selected_val=="Address"){
-	echo"<form action='#' method='post'><label>Enter a new Address:</label><textarea class='form-control' type='text' name='address' > </textarea> <input class='btn btn-primary' type='submit' name='submit5' /> </form> ";
+	echo"<form action='#' method='post'><textarea class='form-control' type='text' name='address' > </textarea><br> <input type='submit'  class='btn btn-success'name='submit5' /> </form> ";
 }
 	/*if($selected_val=="Card"){
 	echo"<form action='#' method='post'><input pattern='^(?:4[0-9]{12}(?:[0-9]{3})?|5[1-5][0-9]{14})$' class='form-control' title='Must enter valid credit card' type='text' name='card'> <input type='submit' name='submit6' /> </form> ";
 }*/
-	if($selected_val=="Picture"){
-	echo"<form action='#' method='post'><label>Enter a new Picture:</label><input type='text' class='form-control' name='picture' pattern='(http[^\s]+(jpg|jpeg|png|tiff)\b)' ></span> </p> <input class='btn btn-primary' type='submit' name='submit7' /> </form> ";
-}
+	/*if($selected_val=="Picture"){
+	echo"<form action='#' method='post'><input type='text' class='form-control' name='picture' pattern='(http[^\s]+(jpg|jpeg|png|tiff)\b)' ></span> </p> <input type='submit' name='submit7' /> </form> ";
+}*/
 	if($selected_val=="Telephone"){
-	echo"<form action='#' method='post'><label>Enter a new Telephone Number:</label><input class='form-control' type='text' pattern='[0-9]{10}'  title='Ten digits code'  name='telephone'> <input class='btn btn-primary' type='submit' name='submit8' /> </form> ";
+	echo"<form action='#' method='post'><input class='form-control' type='text' pattern='[0-9]{10}'  title='Ten digits code'  name='telephone'><br> <input type='submit'  class='btn btn-success'name='submit8' /> </form> ";
 }
 }
 	if(isset($_POST['submit1'])){
-	$sql = "UPDATE users SET Name='$_POST[name]' WHERE id='$_SESSION[id]'";
+	$sql = "UPDATE users SET Name='$_POST[name]' WHERE EMail='$_SESSION[email]'";
 
 if ($baglan->query($sql) === TRUE) {
-  echo "<script> alert('You have to login again!!'); </script>";
-	header('Refresh: 7; url=http://localhost/login.php');
+  echo "<script> alert(' Changes saved. You have to login again!!'); </script>";
+	header('Refresh: 1; url=http://localhost/login.php');
 } else {
     echo "Error updating record: " . $baglan->error;
 }
 	}
 			if(isset($_POST['submit2'])){
-	$sql = "UPDATE users SET Surname='$_POST[surname]' WHERE id='$_SESSION[id]'";
+	$sql = "UPDATE users SET Surname='$_POST[surname]' WHERE EMail='$_SESSION[email]'";
 
 if ($baglan->query($sql) === TRUE) {
-   echo "<script> alert('You have to login again!!'); </script>";
-	header('Refresh: 7; url=http://localhost/login.php');
+   echo "<script> alert('Changes saved. You have to login again!!'); </script>";
+	header('Refresh: 1; url=http://localhost/login.php');
 } else {
     echo "Error updating record: " . $baglan->error;
 }
 			}
-					if(isset($_POST['submit3'])){
-	$sql = "UPDATE users SET Password='$_POST[password]' WHERE id='$_SESSION[id]'";
+
+										if(isset($_POST['submit4'])){
+	$sql = "UPDATE users SET EMail='$_POST[email]' WHERE EMail='$_SESSION[email]'";
 
 if ($baglan->query($sql) === TRUE) {
-  echo "<script> alert('You have to login again!!'); </script>";
-	header('Refresh: 7; url=http://localhost/login.php');
-} else {
-    echo "Error updating record: " . $baglan->error;
-}
-					}
-							if(isset($_POST['submit4'])){
-	$sql = "UPDATE users SET EMail='$_POST[email]' WHERE id='$_SESSION[id]'";
-
-if ($baglan->query($sql) === TRUE) {
-    echo "<script> alert('You have to login again!!'); </script>";
-	header('Refresh: 7; url=http://localhost/login.php');
+    echo "<script> alert('Changes saved. You have to login again!!'); </script>";
+	header('Refresh: 1; url=http://localhost/login.php');
 } else {
     echo "Error updating record: " . $baglan->error;
 }
 							}
-									if(isset($_POST['submit5'])){
-	$sql = "UPDATE users SET Address='$_POST[address]' WHERE id='$_SESSION[id]'";
+
+
+					if(isset($_POST['submit3'])){
+	$sql = "UPDATE users SET Password='$_POST[password]' WHERE EMail='$_SESSION[email]'";
 
 if ($baglan->query($sql) === TRUE) {
-    echo "<script> alert('You have to login again!!'); </script>";
-	header('Refresh: 7; url=http://localhost/login.php');
+  echo "<script> alert('Changes saved. You have to login again!!'); </script>";
+	header('Refresh: 1; url=http://localhost/login.php');
 } else {
     echo "Error updating record: " . $baglan->error;
 }
-									}
-											if(isset($_POST['submit6'])){
-	$sql = "UPDATE users SET Picture='$_POST[picture]' WHERE id='$_SESSION[id]'";
+					}
+
+																		if(isset($_POST['submit8'])){
+	$sql = "UPDATE users SET Telephone='$_POST[telephone]' WHERE EMail='$_SESSION[email]'";
 
 if ($baglan->query($sql) === TRUE) {
- echo "<script> alert('You have to login again!!'); </script>";
-	header('Refresh: 7; url=http://localhost/login.php');
-} else {
-    echo "Error updating record: " . $baglan->error;
-}
-											}
-													if(isset($_POST['submit7'])){
-	$sql = "UPDATE users SET Telephone='$_POST[telephone]' WHERE id='$_SESSION[id]'";
-
-if ($baglan->query($sql) === TRUE) {
-    echo "<script> alert('You have to login again!!'); </script>";
-	header('Refresh: 7; url=http://localhost/login.php');
+    echo "<script> alert('Changes saved. You have to login again!!'); </script>";
+	header('Refresh: 1; url=http://localhost/login.php');
 
 } else {
     echo "Error updating record: " . $baglan->error;
 }
 													}
-															if(isset($_POST['submit8'])){
-	$sql = "UPDATE users SET Card='$_POST[card]' WHERE id='$_SESSION[id]'";
+
+
+									if(isset($_POST['submit5'])){
+	$sql = "UPDATE users SET Address='$_POST[address]' WHERE EMail='$_SESSION[email]'";
 
 if ($baglan->query($sql) === TRUE) {
-  echo "<script> alert('You have to login again!!'); </script>";
-	header('Refresh: 7; url=http://localhost/login.php');
+    echo "<script> alert('Changes saved. You have to login again!!'); </script>";
+	header('Refresh: 1; url=http://localhost/login.php');
 } else {
     echo "Error updating record: " . $baglan->error;
 }
-															}
+									}
+
+
+															
 
 	
 ?>

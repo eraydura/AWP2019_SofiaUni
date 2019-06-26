@@ -22,43 +22,20 @@ registration {
     font-family:sans-serif,bold, Arial, Helvetica; 
     font-size:14px; 
 } 
+
 body {
 background-image:url(paysage.jpg);
 background-repeat: no-repeat;
 background-size: cover;
 background-attachment: fixed;
 }
-
-/*span
-{
-  position:relative;
-  display:block;
-  overflow:auto;
-  position:absolute;
-  top:0;
-  right:15px;
-}
-
-div {  
-    box-sizing: border-box; 
-    width: 100%; 
-    border: 100px solid black; 
-    float: left; 
-    align-content: center; 
-    align-items: center; 
-} */
-   
+ 
 form {                                         
     margin: 5 auto; 
     width: 465px; 
     border-radius: 10px;
     background-color: rgba(95,95,95,0.4);
     padding:20px;
-}
-
-.vehicomm {
-  width: 150px;
-  float:right;
 }
 
 </style>
@@ -107,26 +84,6 @@ form {
      
     <div class="form-group">
       <p><strong>Address*</strong><textarea class="form-control" rows="5" name="Address" placeholder="Address">  </textarea></p> </div>
-
-     <!-- <div class="dropdown">
-    <select class="btn btn-default dropdown-toggle" id="">
-    <option class="caret" value="">--Gender--</option>
-    <option class="caret" value="man">Man</option>
-    <option class="caret" value="woman">Woman</option>
-  </select>
-  </div> -->
-
-  <div class="radio">
-    <label class="radio-inline"><input type="radio" class="custom-control-input" name="gender" value="Man"><strong>Man</strong></label>
-    <label class="radio-inline"><input type="radio" class="custom-control-input" name="gender" value="Woman"><strong>Woman</strong></label>
-  </div><br>
-
-  
-     <div class="input-group">
-      <span class="input-group-addon">
-      Select file</span>
-      <input type="file" name="pic" class="btn btn-primary drop" />
-  </div>
 
      <div class="form-group"><hr/></div> 
 

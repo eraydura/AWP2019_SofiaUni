@@ -3,13 +3,12 @@
 session_start();
 ?>
 <?php
-$baglan = mysql_connect("localhost","root","manisa45");
-if(!$baglan){
- die('404 ERROR:' . mysql_error()); 
+$baglan = mysqli_connect("localhost","root","","mywebapp");
+  if($baglan === false){
+    die("ERROR: Could not connect. " . mysqli_connect_error());
 }
-$db_select = mysql_select_db("ecommercial");
-
 ?>
+
 <html>
 
 <head>

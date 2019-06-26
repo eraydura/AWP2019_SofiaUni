@@ -1,22 +1,22 @@
 <!-- It should show us : 
-	-number of sells
-	-how much euros we earned
-	-most popular article
-	-purcentage more/less since the last month
+    -number of sells
+    -how much euros we earned
+    -most popular article
+    -purcentage more/less since the last month
 
-	+ list of users
-	- name / mail / gender / age - password - 
+    + list of users
+    - name / mail / gender / age - password - 
 -->
 <?php include 'connectdatabase.php'; ?>
 <!DOCTYPE html>
 <html>
 <head>
-  	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  	<meta name="description" content="">
-  	<meta name="author" content="">
-  	<link rel="stylesheet" href="resources/css/bootstrap.min.css">
-  	<link rel="stylesheet" href="resources/css/light-bootstrap-dashboard.css">
-	<title></title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="stylesheet" href="resources/css/bootstrap.min.css">
+    <link rel="stylesheet" href="resources/css/light-bootstrap-dashboard.css">
+    <title></title>
 </head>
 <body>
 <div class="wrapper">
@@ -29,7 +29,7 @@
 
     -->
 
-    	<div class="sidebar-wrapper">
+        <div class="sidebar-wrapper">
             <div class="logo">
                 AWP Project
             </div>
@@ -42,14 +42,16 @@
                     </a>
                 </li>
                 <li>
-                	<a href="exportproducts.php"> Export products</a>
+                    <a href="exportproducts.php"> Export products</a>
                 </li>
                 <li>
-                	<a href="exportusers.php"> Export users</a>
+                    <a href="exportusers.php"> Export users</a>
                 </li>
-
+                <li>
+                    <a href="exportsales.php"> Export sales</a>
+                </li>
             </ul>
-    	</div>
+        </div>
     </div>
 
     <div class="main-panel">
@@ -91,75 +93,124 @@
         <div class="content">
             <div class="container-fluid">
                 <div class="row">
-			        <div class="col-lg-4">
-						<center><h4> Total number of sales </h4></center>
-					</div>
-					<div class="col-lg-4">
-						<center><h4> Last purchase </h4></center>
-					</div>
-					<div class="col-lg-4">
-						<center><h4> Users </h4></center> </br>
-						<center><a href="usersinfos.php"><button> See all users</button></a></center>
-					</div>
+                    <div class="col-lg-4">
+                    </div>
+                    <div class="col-lg-4">
+                        <center><h4> Last purchase </h4></center>
+                         <?php
+                            $sql = " SELECT ProductCode as lastpurchase FROM sales ORDER BY id DESC";
+                            $result = mysqli_query($conn, $sql);
+                            $row = mysqli_fetch_assoc($result);
+                            $total = $row['lastpurchase'];
+                            echo "<h4><center>".$row['lastpurchase']."  </center></h4>";
+                        ?>
+                    </div>
+                    <div class="col-lg-4">
+                        <center><h4> Users </h4></center> </br>
+                        <center><a href="usersinfos.php"><button> See all users</button></a></center>
+                    </div>
                 </div></br>
                  <div class="row" style="background-color: #976DD9; color:white;">
-			        <div class="col-lg-6">
-						<center><h4> Money earned </h4></center>
-					</div>
-					<div class="col-lg-6">
-						<center><h4> Average product price</h4></center>
-						<?php
-							$sql = "SELECT AVG(buyPrice) as Average FROM products ";
-							$result = mysqli_query($conn, $sql);
-							$row = mysqli_fetch_assoc($result);
-							$total = $row['Average'];
-							echo "<h4><center>".$row['Average']." $ </center></h4>";
-						?>
-					</div>
+                    <div class="col-lg-6">
+                        <center><h4> Money earned </h4></center>
+                        <?php
+                            $sql = "SELECT SUM(TotalPrice) as totalprice FROM sales";
+                            $result = mysqli_query($conn, $sql);
+                            $row = mysqli_fetch_assoc($result);
+                            $total = $row['totalprice'];
+                            echo "<h4><center>".$row['totalprice']."$  </center></h4>";
+                        ?>
+                    </div>
+                    <div class="col-lg-6">
+                        <center><h4> Average product price</h4></center>
+                        <?php
+                            $sql = "SELECT AVG(buyPrice) as Average FROM products ";
+                            $result = mysqli_query($conn, $sql);
+                            $row = mysqli_fetch_assoc($result);
+                            $total = $row['Average'];
+                            echo "<h4><center>".$row['Average']." $ </center></h4>";
+                        ?>
+                    </div>
 
                 </div>
                  <div class="row">
-			        <div class="col-lg-4">
-						<center><h4> Total number of users </h4></center>
+                    <div class="col-lg-4">
+                        <center><h4> Total number of sales </h4></center>
+                        <?php
+                            $sql = "SELECT COUNT(QuantityProduct) as quantity FROM sales";
+                            $result = mysqli_query($conn, $sql);
+                            $row = mysqli_fetch_assoc($result);
+                            $total = $row['quantity'];
+                            echo "<h4><center>".$row['quantity']."  </center></h4>";
+                        ?>
+                    </div>
+                    <div class="col-lg-4">
+                        <center><h4> Total number of users </h4></center>
 
-						<?php 
-						$sql = "SELECT COUNT(id) as allusers FROM users ";
-						$result = mysqli_query($conn, $sql);
-						$row = mysqli_fetch_assoc($result);
-						$total = $row['allusers'];
-						echo "<h4><center>".$row['allusers']."</center></h4>";
-						?>
+                        <?php 
+                        $sql = "SELECT COUNT(id) as allusers FROM users ";
+                        $result = mysqli_query($conn, $sql);
+                        $row = mysqli_fetch_assoc($result);
+                        $total = $row['allusers'];
+                        echo "<h4><center>".$row['allusers']."</center></h4>";
+                        ?>
 
-					</div>
-					<div class="col-lg-4">
-						<center><h4> Total number of products </h4></center>
-						<?php 
-						$sql = "SELECT COUNT(productName) as allproducts FROM products ";
-						$result = mysqli_query($conn, $sql);
-						$row = mysqli_fetch_assoc($result);
-						$total = $row['allproducts'];
-						echo "<h4><center>".$row['allproducts']."</center></h4>";
-						?>
-					</div>
-					<div class="col-lg-4">
-					
-					</div>
+                    </div>
+                    <div class="col-lg-4">
+                        <center><h4> Total number of products </h4></center>
+                        <?php 
+                        $sql = "SELECT COUNT(productName) as allproducts FROM products ";
+                        $result = mysqli_query($conn, $sql);
+                        $row = mysqli_fetch_assoc($result);
+                        $total = $row['allproducts'];
+                        echo "<h4><center>".$row['allproducts']."</center></h4>";
+                        ?>
+                    </div>
+                    <div class="col-lg-4">
+                    
+                    </div>
                 </div>
 
                 <div class="row" style="background-color: #976DD9; color:white;">
-					<div class="col-lg-3">
-						<h4>Sell per month : </h4>
-					</div>
-					<div class="col-lg-3">
-						<h4>Total sell this month</h4>
-
-					</div>
-					<div class="col-lg-3">
-						<h4>Total money this month</h4>
-					</div>
-					<div class="col-lg-3">
-						<h4>Since last month</h4>
-					</div>
+                    <div class="col-lg-3">
+                        <center><h4>Sell per month : </h4></center>
+                    </div>
+                    <div class="col-lg-3">
+                        <center><h4>Total sell this month</h4></center>
+                        <?php 
+                        $sql = "SELECT COUNT(QuantityProduct) as allproducts
+                                FROM sales
+                                WHERE MONTH(CURRENT_TIMESTAMP) ";
+                        $result = mysqli_query($conn, $sql);
+                        $row = mysqli_fetch_assoc($result);
+                        $total = $row['allproducts'];
+                        echo "<h4><center>".$row['allproducts']."</center></h4>";
+                        ?>
+                    </div>
+                    <div class="col-lg-3">
+                        <center><h4>Total earned this month</h4></center>
+                        <?php 
+                        $sql = "SELECT SUM(TotalPrice) as pricemonth
+                                FROM sales
+                                WHERE MONTH(CURRENT_TIMESTAMP) ";
+                        $result = mysqli_query($conn, $sql);
+                        $row = mysqli_fetch_assoc($result);
+                        $total = $row['pricemonth'];
+                        echo "<h4><center>".$row['pricemonth']."$</center></h4>";
+                        ?>
+                    </div>
+                    <div class="col-lg-3">
+                        <center><h4>Last month</h4></center>
+                         <?php 
+                        $sql = "SELECT SUM(TotalPrice) as lastpricemonth
+                                FROM sales
+                                WHERE MONTH(CURRENT_TIMESTAMP) = MONTH(CURRENT_TIMESTAMP)-1 ";
+                        $result = mysqli_query($conn, $sql);
+                        $row = mysqli_fetch_assoc($result);
+                        $total = $row['lastpricemonth'];
+                        echo "<h4><center>".$row['lastpricemonth']."0$</center></h4>"; //delete the 0 next month
+                        ?>
+                    </div>
                 </div>
             </div>
         </div>

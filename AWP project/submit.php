@@ -51,11 +51,11 @@ if ($conn->connect_error) {
 $Password      =    $_POST["Password"];
 //$Pass_hash = password_hash($Password, PASSWORD_DEFAULT);
  $EMail   =    $_POST["EMail"];
-$Gender   =    $_POST["gender"];
-$Pic   =    $_POST['pic'];
+//$Gender   =    $_POST["gender"];
+//$Pic   =    $_POST['pic'];
 
-$sql = "INSERT INTO users (Name, Surname, Telephone, Address, Password, EMail, Gender, Picture)
-VALUES ('$Name' , '$Surname','$Telephone','$Address','$Password','$EMail', '$Gender', '$Pic')";
+$sql = "INSERT INTO users (Name, Surname, Telephone, Address, Password, EMail)
+VALUES ('$Name' , '$Surname','$Telephone','$Address','$Password','$EMail')";
 
 if ($conn->query($sql) === TRUE) {
     echo "<strong>New record created successfully</strong>";
@@ -78,8 +78,8 @@ $_SESSION["surname"] = $_POST["Surname"];
 $_SESSION["adress"] = $_POST["Address"];
 $_SESSION["telephone"] = $_POST["Telephone"];
 //$_SESSION["card"] = $_POST["Card"];
-$_SESSION["gender"] = $_POST["gender"];
-$_SESSION["picture"]=$_POST['pic'];
+//$_SESSION["gender"] = $_POST["gender"];
+//$_SESSION["picture"]=$_POST['pic'];
 //echo "Session variables are set.";
 ?>
 </form>

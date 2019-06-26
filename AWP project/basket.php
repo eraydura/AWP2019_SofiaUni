@@ -51,8 +51,16 @@ body {
       <li><a href="#">About</a></li>
     </ul>
      <ul class="nav navbar-nav navbar-right">
-        <li><a href="register.php"><span class=""></span> Sign Up</a></li>
-        <li><a href="login.php"><img src="user.png" width="20px"> Login</a></li>
+          <?php
+      if(isset($_SESSION["email"])){
+        echo "<li> <p style='color:white;'><img src='user.png' width='20px'> Hello ".$_SESSION["name"]."</li>";
+        echo "<li> <p style='color:white;'><button><a href='logout.php'>Log Out</a></button></li>";
+      }
+      else{
+        echo "<li><a href='register.php'> Sign Up</a></li>
+        <li><a href='login.php'><img src='user.png' width='20px'> Login</a></li>";
+      }
+      ?>
       </ul>
   </div>
 </nav>

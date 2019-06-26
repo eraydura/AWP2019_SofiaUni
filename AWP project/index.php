@@ -36,97 +36,9 @@ thead{
 	border-radius: 50px;
 }
 
-.submit {
-	border-radius: 5px;
-}
-
-.div1{
-	margin-left: 50px;
-}
-
-.div2{
-	margin-left: 50px;
-}
-
-.div3{
-	margin-left: 50px
-}
-
-div.spoiler1 {
-    margin-top: 50px; 
-    padding: 10px;
-    width: 32%;
-    /*border: 1px solid black;*/
-    float: left;
-    position: relative;
-}
-
-div.spoiler2 {
-    margin-top: 50px; 
-    padding: 10px;
-    width: 32%;
-    /*border: 1px solid black;*/
-    float: left;
-    position: relative;
-}
-
-div.spoiler3 {
-    margin-top: 50px; 
-    padding: 10px;
-    width: 32%;
-    /*border: 1px solid black;*/
-    float: left;
-    position: relative;
-
-}
-
-.cursor{
-  cursor: pointer;
-}
-
-div.spoiler1 div.contenuSpoiler {
-    display: none;
-}
-div.spoiler2 div.contenuSpoiler {
-    display: none;
-}
-div.spoiler3 div.contenuSpoiler {
-    display: none;
-}
-.drop{
-	margin-bottom: 5px;
-}
-
 a{
 color: black;
-
 }
-
-
-.vehicomm {
-  width: 115px;
-}
-
-.inpt{
-  border: none;
-  background-color: #f5f5f5;
-  margin-bottom: 2px;
-}
-
-.contain{
-  float: right;
-  margin: 100px 25px 0 0;
-  width: 200px;
-}
-
-.bask{
-  border: 1px solid #f5f5f5;
-  border-radius: 5px;
-  padding: 5px 5px 5px 5px;
-  margin-bottom: 5px;
-}
-
-
 
 </style>
 
@@ -170,46 +82,6 @@ function openclose(div) {
 }
 
 
-/*function add(){
-  var code = document.getElementById('code').innerHTML;
-  var name = document.getElementById('prod').innerHTML;
-  var line = document.getElementById('type').innerHTML;
-  var price = document.getElementById('price').innerHTML;
-  var arrayLignes = document.getElementById("tab").innerHTML;
-  var tr = document.getElementById("tr").innerHTML;
-  var longueur = tr.length; 
-  var trou = document.getElementsByClassName("trou");
-  //alert(tr);
-  document.getElementById('input1').value = code;
-  document.getElementById('input2').value = name;
-  document.getElementById('input3').value = line;
-  document.getElementById('input4').value = price;
-  
-/*for (var i = 0; i < trou.length; i++) {
-  trou[i].setAttribute("id", "code" + i);
-
-}
-alert(arrayLignes);
-
-
-  }
-
-function check() {
-  var c = document.getElementById('input3').value;
-  alert(c);
-  if (c != "Classic Cars" || c != "Motorcycles" || c != "Planes"|| c != "Ships" || c != "Trains" || c != "Trucks and Buses" || c != "Vintage Cars"){
-    return false;
-    alert("tg");
-  }
-  else{
-    document.getElementById('input3').style.color = 'red';
-    return true;
-  }
-}*/
-
-
-
-
 </script>
 </head>
 <body onload="hideDiv()">
@@ -222,12 +94,21 @@ function check() {
     <ul class="nav navbar-nav">
       <li><a href="main.php">Home</a></li>
       <li class="active"><a href="#">Products</a></li>
-      <li><a href="basket.php">My Basket</a></li>
+      <li><a href="basket1.php">My Basket</a></li>
       <li><a href="#">About</a></li>
     </ul>
      <ul class="nav navbar-nav navbar-right">
-        <li><a href="register.php"><span class=""></span> Sign Up</a></li>
-        <li><a href="login.php"><img src="user.png" width="20px"> Login</a></li>
+         <?php
+      if(isset($_SESSION["email"])){
+        echo "<li><a href='#' style='color:white; cursor:default'>
+        <img src='user.png' width='20px'><i> Hello ".$_SESSION["name"]."</i></a></li>";
+        echo "<li><a href='logout.php'><img src='logout.png' width='20px'> Log Out</a></li>";
+      }
+      else{
+        echo "<li><a href='register.php'> Sign Up</a></li>
+        <li><a href='login.php'><img src='user.png' width='20px'> Log In</a></li>";
+      }
+      ?>
       </ul>
   </div>
 </nav>
@@ -352,7 +233,7 @@ if(isset($_POST["submit"])) {
 
 <table id="tab" class="table table-striped form-group center-block">
  <thead class="thead-light thead"> 
-  <tr class="bg-info" id="hide" style="border-radius: 50px;">
+  <tr class="bg-info" id="" style="border-radius: 50px;">
       <th>Code</th>
       <th>Name</th>
       <th>Type</th>
@@ -486,3 +367,10 @@ $req->closeCursor();
 </body>
 
 </html>
+<?php
+      if(isset($_POST['disconnect'])) {
+       session_destroy();
+       header('profile.php');
+}
+      ?>
+?>
