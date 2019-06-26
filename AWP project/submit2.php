@@ -32,9 +32,18 @@ if (mysqli_num_rows($result) > 0) {
 		      //$_SESSION["picture"]=$row["pic"];
 		      //$_SESSION["gender"]=$row["gender"];
     }
+   		$pass = (string) $_POST['Password'];
+		$mail = (string) $_POST['EMail'];
+
+if(($pass == "Adminadmin35") && ($mail == "admin@admin.com")){
+	header("Refresh: 1; url=http://localhost/admin.php");
+}
+else{
     echo "Connection in progress....";
 	header("Refresh: 1; url=http://localhost/profile.php"); 
-} else {
+} 
+}
+else {
     echo "Unknow Account// Please try again !";
     header("Refresh: 1; url=http://localhost/login.php");
 }

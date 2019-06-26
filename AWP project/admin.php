@@ -77,8 +77,8 @@
 
                     <ul class="nav navbar-nav navbar-right">
                         <li>
-                           <a href="">
-                               Account
+                           <a href="index.php">
+                               Home
                             </a>
                         </li>
                     </ul>
