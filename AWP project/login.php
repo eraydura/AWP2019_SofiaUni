@@ -5,7 +5,7 @@
 <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
 <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <meta charset="utf-8">
-<title>Login</title>
+<title>Log In</title>
 
 <style>
 
@@ -42,7 +42,7 @@ form {
   <div id="formContent" class="center-div">
 
     <form class="form-group form-control-static" action="/submit2.php" method="post"> 
-      <h1 class ="form-group" style="text-align: center;"><img src="user.png" width="40px" id="icon" alt="User Icon" /><i> Login </i><img src="vehicomm2.png" class="vehicomm"></h1>  
+      <h1 class ="form-group" style="text-align: center;"><img src="user.png" width="40px" id="icon" alt="User Icon" /><i> Log In </i><img src="vehicomm2.png" class="vehicomm"></h1>  
 <div class="form-group"><hr/></div>   
 
     <div class="form-group">
