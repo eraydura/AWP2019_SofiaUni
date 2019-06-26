@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1:3306
--- Generation Time: Jun 25, 2019 at 03:58 PM
+-- Generation Time: Jun 26, 2019 at 04:54 PM
 -- Server version: 5.7.24
 -- PHP Version: 7.2.14
 
@@ -21,39 +21,6 @@ SET time_zone = "+00:00";
 --
 -- Database: `mywebapp`
 --
-
--- --------------------------------------------------------
-
---
--- Table structure for table `basket`
---
-
-DROP TABLE IF EXISTS `basket`;
-CREATE TABLE IF NOT EXISTS `basket` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `code` varchar(50) NOT NULL,
-  `username` varchar(50) NOT NULL,
-  `user_email` varchar(50) NOT NULL,
-  `productname` varchar(50) NOT NULL,
-  `type` varchar(50) NOT NULL,
-  `date` date DEFAULT NULL,
-  `quantity` int(11) NOT NULL DEFAULT '1',
-  `totalprice` int(11) NOT NULL,
-  PRIMARY KEY (`id`),
-  KEY `user_email` (`user_email`)
-) ENGINE=MyISAM AUTO_INCREMENT=29 DEFAULT CHARSET=utf8;
-
---
--- Dumping data for table `basket`
---
-
-INSERT INTO `basket` (`id`, `code`, `username`, `user_email`, `productname`, `type`, `date`, `quantity`, `totalprice`) VALUES
-(1, '', 'Romiche', '', 'Moteur', '', NULL, 1, 50),
-(25, 'S18_3029', 'Romain', 'romain.muckenhirn@gmail.com', '1999 Yamaha Speed Boat', 'Ships', '2019-06-25', 1, 52),
-(24, 'S10_1949', 'Romain', 'romain.muckenhirn@gmail.com', '1952 Alpine Renault 1300', 'Classic Cars', '2019-06-25', 1, 99),
-(26, 'S10_1678', 'Con', 'romain.muckenhirn@g.com', '1969 Harley Davidson Ultimate Chopper', 'Motorcycles', '2019-06-25', 1, 49),
-(27, 'S10_1949', 'Con', 'romain.muckenhirn@g.com', '1952 Alpine Renault 1300', 'Classic Cars', '2019-06-25', 1, 99),
-(28, 'S10_1678', 'Vieux', 'romain.mn@gmail.com', '1969 Harley Davidson Ultimate Chopper', 'Motorcycles', '2019-06-25', 1, 49);
 
 -- --------------------------------------------------------
 
@@ -81,9 +48,11 @@ CREATE TABLE IF NOT EXISTS `products` (
 --
 
 INSERT INTO `products` (`productCode`, `productName`, `productLine`, `productScale`, `productVendor`, `productDescription`, `quantityInStock`, `buyPrice`, `MSRP`) VALUES
-('S10_1678', '1969 Harley Davidson Ultimate Chopper', 'Motorcycles', '1:10', 'Min Lin Diecast', 'This replica features working kickstand, front suspension, gear-shift lever, footbrake lever, drive chain, wheels and steering. All parts are particularly delicate due to their precise scale and require special care and attention.', 7933, '48.81', '95.70'),
+('S10_1678', '1969 Harley Davidson Ultimate Chopper', 'Motorcycles', '1:10', 'Min Lin Diecast', 'This replica features working kickstand, front suspension, gear-shift lever, footbrake lever, drive chain, wheels and steering. All parts are particularly delicate due to their precise scale and require special care and attention.', 7908, '48.81', '95.70'),
+('S10_1678111', '1969 Harley Davidson Ultimate Chopper', 'Motorcycles', '1:10', 'Min Lin Diecast', 'This replica features working kickstand, front suspension, gear-shift lever, footbrake lever, drive chain, wheels and steering. All parts are particularly delicate due to their precise scale and require special care and attention.', 7933, '48.81', '95.70'),
 ('S10_1949', '1952 Alpine Renault 1300', 'Classic Cars', '1:10', 'Classic Metal Creations', 'Turnable front wheels; steering function; detailed interior; detailed engine; opening hood; opening trunk; opening doors; and detailed chassis.', 7305, '98.58', '214.30'),
-('S10_2016', '1996 Moto Guzzi 1100i', 'Motorcycles', '1:10', 'Highway 66 Mini Classics', 'Official Moto Guzzi logos and insignias, saddle bags located on side of motorcycle, detailed engine, working steering, working suspension, two leather seats, luggage rack, dual exhaust pipes, small saddle bag located on handle bars, two-tone paint with chrome accents, superior die-cast detail , rotating wheels , working kick stand, diecast metal with plastic parts and baked enamel finish.', 6625, '68.99', '118.94'),
+('S10_19491255', '1952 Alpine Renault 1300', 'Classic Cars', '1:10', 'Classic Metal Creations', 'Turnable front wheels; steering function; detailed interior; detailed engine; opening hood; opening trunk; opening doors; and detailed chassis.', 7284, '98.58', '214.30'),
+('S10_2016', '1996 Moto Guzzi 1100i', 'Motorcycles', '1:10', 'Highway 66 Mini Classics', 'Official Moto Guzzi logos and insignias, saddle bags located on side of motorcycle, detailed engine, working steering, working suspension, two leather seats, luggage rack, dual exhaust pipes, small saddle bag located on handle bars, two-tone paint with chrome accents, superior die-cast detail , rotating wheels , working kick stand, diecast metal with plastic parts and baked enamel finish.', 6604, '68.99', '118.94'),
 ('S10_4698', '2003 Harley-Davidson Eagle Drag Bike', 'Motorcycles', '1:10', 'Red Start Diecast', 'Model features, official Harley Davidson logos and insignias, detachable rear wheelie bar, heavy diecast metal with resin parts, authentic multi-color tampo-printed graphics, separate engine drive belts, free-turning front fork, rotating tires and rear racing slick, certificate of authenticity, detailed engine, display stand\r\n, precision diecast replica, baked enamel finish, 1:10 scale model, removable fender, seat and tank cover piece for displaying the superior detail of the v-twin engine', 5582, '91.02', '193.66'),
 ('S10_4757', '1972 Alfa Romeo GTA', 'Classic Cars', '1:10', 'Motor City Art Classics', 'Features include: Turnable front wheels; steering function; detailed interior; detailed engine; opening hood; opening trunk; opening doors; and detailed chassis.', 3252, '85.68', '136.00'),
 ('S10_4962', '1962 LanciaA Delta 16V', 'Classic Cars', '1:10', 'Second Gear Diecast', 'Features include: Turnable front wheels; steering function; detailed interior; detailed engine; opening hood; opening trunk; opening doors; and detailed chassis.', 6791, '103.42', '147.74'),
@@ -99,7 +68,7 @@ INSERT INTO `products` (`productCode`, `productName`, `productLine`, `productSca
 ('S12_4675', '1969 Dodge Charger', 'Classic Cars', '1:12', 'Welly Diecast Productions', 'Detailed model of the 1969 Dodge Charger. This model includes finely detailed interior and exterior features. Painted in red and white.', 7323, '58.73', '115.16'),
 ('S18_1097', '1940 Ford Pickup Truck', 'Trucks and Buses', '1:18', 'Studio M Art Models', 'This model features soft rubber tires, working steering, rubber mud guards, authentic Ford logos, detailed undercarriage, opening doors and hood,  removable split rear gate, full size spare mounted in bed, detailed interior with opening glove box', 2613, '58.33', '116.67'),
 ('S18_1129', '1993 Mazda RX-7', 'Classic Cars', '1:18', 'Highway 66 Mini Classics', 'This model features, opening hood, opening doors, detailed engine, rear spoiler, opening trunk, working steering, tinted windows, baked enamel finish. Color red.', 3975, '83.51', '141.54'),
-('S18_1342', '1937 Lincoln Berline', 'Vintage Cars', '1:18', 'Motor City Art Classics', 'Features opening engine cover, doors, trunk, and fuel filler cap. Color black', 8693, '60.62', '102.74'),
+('S18_1342', '1937 Lincoln Berline', 'Vintage Cars', '1:18', 'Motor City Art Classics', 'Features opening engine cover, doors, trunk, and fuel filler cap. Color black', 8670, '60.62', '102.74'),
 ('S18_1367', '1936 Mercedes-Benz 500K Special Roadster', 'Vintage Cars', '1:18', 'Studio M Art Models', 'This 1:18 scale replica is constructed of heavy die-cast metal and has all the features of the original: working doors and rumble seat, independent spring suspension, detailed interior, working steering system, and a bifold hood that reveals an engine so accurate that it even includes the wiring. All this is topped off with a baked enamel finish. Color white.', 8635, '24.26', '53.91'),
 ('S18_1589', '1965 Aston Martin DB5', 'Classic Cars', '1:18', 'Classic Metal Creations', 'Die-cast model of the silver 1965 Aston Martin DB5 in silver. This model includes full wire wheels and doors that open with fully detailed passenger compartment. In 1:18 scale, this model measures approximately 10 inches/20 cm long.', 9042, '65.96', '124.44'),
 ('S18_1662', '1980s Black Hawk Helicopter', 'Planes', '1:18', 'Red Start Diecast', '1:18 scale replica of actual Army\'s UH-60L BLACK HAWK Helicopter. 100% hand-assembled. Features rotating rotor blades, propeller blades and rubber wheels.', 5330, '77.27', '157.69'),
@@ -117,7 +86,7 @@ INSERT INTO `products` (`productCode`, `productName`, `productLine`, `productSca
 ('S18_2870', '1999 Indy 500 Monte Carlo SS', 'Classic Cars', '1:18', 'Red Start Diecast', 'Features include opening and closing doors. Color: Red', 8164, '56.76', '132.00'),
 ('S18_2949', '1913 Ford Model T Speedster', 'Vintage Cars', '1:18', 'Carousel DieCast Legends', 'This 250 part reproduction includes moving handbrakes, clutch, throttle and foot pedals, squeezable horn, detailed wired engine, removable water, gas, and oil cans, pivoting monocle windshield, all topped with a baked enamel red finish. Each replica comes with an Owners Title and Certificate of Authenticity. Color red.', 4189, '60.78', '101.31'),
 ('S18_2957', '1934 Ford V8 Coupe', 'Vintage Cars', '1:18', 'Min Lin Diecast', 'Chrome Trim, Chrome Grille, Opening Hood, Opening Doors, Opening Trunk, Detailed Engine, Working Steering System', 5649, '34.35', '62.46'),
-('S18_3029', '1999 Yamaha Speed Boat', 'Ships', '1:18', 'Min Lin Diecast', 'Exact replica. Wood and Metal. Many extras including rigging, long boats, pilot house, anchors, etc. Comes with three masts, all square-rigged.', 4259, '51.61', '86.02'),
+('S18_3029', '1999 Yamaha Speed Boat', 'Ships', '1:18', 'Min Lin Diecast', 'Exact replica. Wood and Metal. Many extras including rigging, long boats, pilot house, anchors, etc. Comes with three masts, all square-rigged.', 4258, '51.61', '86.02'),
 ('S18_3136', '18th Century Vintage Horse Carriage', 'Vintage Cars', '1:18', 'Red Start Diecast', 'Hand crafted diecast-like metal horse carriage is re-created in about 1:18 scale of antique horse carriage. This antique style metal Stagecoach is all hand-assembled with many different parts.\r\n\r\nThis collectible metal horse carriage is painted in classic Red, and features turning steering wheel and is entirely hand-finished.', 5992, '60.74', '104.72'),
 ('S18_3140', '1903 Ford Model A', 'Vintage Cars', '1:18', 'Unimax Art Galleries', 'Features opening trunk,  working steering system', 3913, '68.30', '136.59'),
 ('S18_3232', '1992 Ferrari 360 Spider red', 'Classic Cars', '1:18', 'Unimax Art Galleries', 'his replica features opening doors, superb detail and craftsmanship, working steering system, opening forward compartment, opening rear trunk with removable spare, 4 wheel independent spring suspension as well as factory baked enamel finish.', 8347, '77.90', '169.34'),
@@ -149,7 +118,7 @@ INSERT INTO `products` (`productCode`, `productName`, `productLine`, `productSca
 ('S24_2360', '1982 Ducati 900 Monster', 'Motorcycles', '1:24', 'Highway 66 Mini Classics', 'Features two-tone paint with chrome accents, superior die-cast detail , rotating wheels , working kick stand', 6840, '47.10', '69.26'),
 ('S24_2766', '1949 Jaguar XK 120', 'Classic Cars', '1:24', 'Classic Metal Creations', 'Precision-engineered from original Jaguar specification in perfect scale ratio. Features opening doors, superb detail and craftsmanship, working steering system, opening forward compartment, opening rear trunk with removable spare, 4 wheel independent spring suspension as well as factory baked enamel finish.', 2350, '47.25', '90.87'),
 ('S24_2840', '1958 Chevy Corvette Limited Edition', 'Classic Cars', '1:24', 'Carousel DieCast Legends', 'The operating parts of this 1958 Chevy Corvette Limited Edition are particularly delicate due to their precise scale and require special care and attention. Features rotating wheels, working streering, opening doors and trunk. Color dark green.', 2542, '15.91', '35.36'),
-('S24_2841', '1900s Vintage Bi-Plane', 'Planes', '1:24', 'Autoart Studio Design', 'Hand crafted diecast-like metal bi-plane is re-created in about 1:24 scale of antique pioneer airplane. All hand-assembled with many different parts. Hand-painted in classic yellow and features correct markings of original airplane.', 5942, '34.25', '68.51'),
+('S24_2841', '1900s Vintage Bi-Plane', 'Planes', '1:24', 'Autoart Studio Design', 'Hand crafted diecast-like metal bi-plane is re-created in about 1:24 scale of antique pioneer airplane. All hand-assembled with many different parts. Hand-painted in classic yellow and features correct markings of original airplane.', 5921, '34.25', '68.51'),
 ('S24_2887', '1952 Citroen-15CV', 'Classic Cars', '1:24', 'Exoto Designs', 'Precision crafted hand-assembled 1:18 scale reproduction of the 1952 15CV, with its independent spring suspension, working steering system, opening doors and hood, detailed engine and instrument panel, all topped of with a factory fresh baked enamel finish.', 1452, '72.82', '117.44'),
 ('S24_2972', '1982 Lamborghini Diablo', 'Classic Cars', '1:24', 'Second Gear Diecast', 'This replica features opening doors, superb detail and craftsmanship, working steering system, opening forward compartment, opening rear trunk with removable spare, 4 wheel independent spring suspension as well as factory baked enamel finish.', 7723, '16.24', '37.76'),
 ('S24_3151', '1912 Ford Model T Delivery Wagon', 'Vintage Cars', '1:24', 'Min Lin Diecast', 'This model features chrome trim and grille, opening hood, opening doors, opening trunk, detailed engine, working steering system. Color white.', 9173, '46.91', '88.51'),
@@ -195,23 +164,30 @@ INSERT INTO `products` (`productCode`, `productName`, `productLine`, `productSca
 -- --------------------------------------------------------
 
 --
--- Table structure for table `stuffs`
+-- Table structure for table `sales`
 --
 
-DROP TABLE IF EXISTS `stuffs`;
-CREATE TABLE IF NOT EXISTS `stuffs` (
-  `Name` varchar(1000) NOT NULL,
-  `Price` int(100) NOT NULL,
-  `Picture` varchar(1000) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+DROP TABLE IF EXISTS `sales`;
+CREATE TABLE IF NOT EXISTS `sales` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `ProductCode` varchar(10) NOT NULL,
+  `QuantityProduct` int(11) NOT NULL,
+  `TotalPrice` decimal(10,0) NOT NULL,
+  `BuyDate` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM AUTO_INCREMENT=37 DEFAULT CHARSET=utf8;
 
 --
--- Dumping data for table `stuffs`
+-- Dumping data for table `sales`
 --
 
-INSERT INTO `stuffs` (`Name`, `Price`, `Picture`) VALUES
-('SWEATSHIRT', 56, 'https://m.media-amazon.com/images/I/81nVzZPgN+L._AC_SX255_.jpg'),
-('SWEATSHIRT2', 69, 'https://cdn-gap.akinon.net/products/2019/03/01/112377/6c6043a8-ba38-45f4-ac10-d4274e931c60_size720x960_cropCenter.jpg');
+INSERT INTO `sales` (`id`, `ProductCode`, `QuantityProduct`, `TotalPrice`, `BuyDate`) VALUES
+(31, 'S10_1678', 1, '49', '2019-06-26 15:37:29'),
+(32, 'S10_1678', 1, '49', '2019-06-26 15:37:48'),
+(33, 'S10_1678', 2, '49', '2019-06-26 15:38:08'),
+(34, 'S18_1342', 1, '61', '2019-06-26 15:38:08'),
+(35, 'S10_1678', 2, '49', '2019-06-26 15:40:34'),
+(36, 'S18_1342', 1, '61', '2019-06-26 15:40:34');
 
 -- --------------------------------------------------------
 
@@ -228,21 +204,21 @@ CREATE TABLE IF NOT EXISTS `users` (
   `Password` varchar(100) NOT NULL,
   `Telephone` int(15) NOT NULL,
   `Address` varchar(100) NOT NULL,
-  `Gender` varchar(50) NOT NULL,
-  `Picture` varchar(100) NOT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `EMail` (`EMail`)
-) ENGINE=InnoDB AUTO_INCREMENT=31 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=33 DEFAULT CHARSET=utf8;
 
 --
 -- Dumping data for table `users`
 --
 
-INSERT INTO `users` (`id`, `Name`, `Surname`, `EMail`, `Password`, `Telephone`, `Address`, `Gender`, `Picture`) VALUES
-(16, 'Romain', 'Muckenhirn', 'romain.muckenhirn@gmail.com', 'MUCKENHIRNdu22', 633811863, '  12, rue de ta mÃ¨re', '', ''),
-(17, 'Con', 'Bien', 'romain.muckenhirn@g.com', 'MUCKENHIRNdu22', 633567986, '  sdgsrge', '', ''),
-(18, 'Maureen', 'Grillon', 'm.g@tamÃ¨re.com', 'MUCKENHIRNdu22', 633512136, '  99 bis rue des plantes', '', ''),
-(27, 'Vieux', 'Juif', 'romain.mn@gmail.com', 'MUCKENHIRNdu22', 123456789, '  tdherh', 'Man', '');
+INSERT INTO `users` (`id`, `Name`, `Surname`, `EMail`, `Password`, `Telephone`, `Address`) VALUES
+(16, 'Romiche', 'Muckenhirn', 'romain.muckenhirn@gmail.com', 'MUCKENHIRNdu22', 633811863, '  12, rue de ta mÃ¨re'),
+(17, 'Con', 'Bien', 'romain.muckenhirn@g.com', 'MUCKENHIRNdu22', 633567986, '  sdgsrge'),
+(18, 'Maureen', 'Grillon', 'm.g@tamÃ¨re.com', 'MUCKENHIRNdu22', 633512136, '  99 bis rue des plantes'),
+(27, 'Vieux', 'Juif', 'romain.mn@gmail.com', 'MUCKENHIRNdu22', 123456789, '  tdherh'),
+(31, 'Jean', 'Juif', 'dfvsef@m.com', 'MUCKENHIRNdu22', 123456789, '  drhgeqrgse('),
+(32, 'Admin', 'Admin', 'admin@admin.com', 'Adminadmin35', 0, '  Admin');
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
