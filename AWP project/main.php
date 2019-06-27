@@ -13,6 +13,7 @@ $baglan = mysqli_connect("localhost","root","","mywebapp");
 
 <link rel="stylesheet" href="resources/css/bootstrap.min.css" type="text/css"  />
 <link rel="stylesheet" href="resources/css/style.css" type="text/css" />
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
 <script src="https://code.jquery.com/jquery-3.3.1.sli
 m.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
@@ -21,21 +22,93 @@ m.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8a
 <style>
 
 body {
-  background-image:url(paysage.jpg);
+  background-image:url(resources/img/paysage.jpg);
   background-repeat: no-repeat;
   background-size: cover;
   background-attachment: fixed;
 }
 
 
+
 </style>
+
+<script language="javascript">
+
+jQuery(document).ready(function(){
+    
+var $carrousel = jQuery('#carrousel'),
+    $img = jQuery('#carrousel img'),
+    indexImg = $img.length - 1,
+    i = 0,
+    $currentImg = $img.eq(i);
+
+$img.css('display', 'none');
+$currentImg.css('display', 'block');
+
+
+jQuery('.next').click(function(){
+
+    i++;
+
+    if( i <= indexImg ){
+        $img.css('display', 'none');
+        $currentImg = $img.eq(i);
+        $currentImg.css('display', 'block');
+    }
+    else{
+        i = indexImg;
+    }
+
+});
+
+jQuery('.prev').click(function(){
+
+    i--;
+
+    if( i >= 0 ){
+        $img.css('display', 'none');
+        $currentImg = $img.eq(i);
+        $currentImg.css('display', 'block');
+    }
+    else{
+        i = 0;
+    }
+
+});
+
+function slideImg(){
+    setTimeout(function(){
+            
+        if(i < indexImg){
+      i++;
+  }
+  else{
+      i = 0;
+  }
+
+  $img.css('display', 'none');
+
+  $currentImg = $img.eq(i);
+  $currentImg.css('display', 'block');
+
+  slideImg();
+
+    }, 2000);
+}
+
+slideImg();
+
+});
+
+  </script>
+
 </head>
 
 <body>
 <nav class="navbar navbar-inverse navbar-fixed-top">
   <div class="container-fluid">
     <div class="navbar-header">
-      <i><a class="navbar-brand" href="profile.php" title="Profile"><img src="vehicomm.png" class="vehicomm"></a></i>
+      <i><a class="navbar-brand" href="profile.php" title="Profile"><img src="resources/img/vehicomm.png" class="vehicomm"></a></i>
     </div>
     <ul class="nav navbar-nav">
       <li class="active"><a href="#">Home</a></li>
@@ -47,12 +120,12 @@ body {
          <?php
       if(isset($_SESSION["email"])){
         echo "<li><a href='#' style='color:white; cursor:default'>
-        <img src='user.png' width='20px'><i> Hello ".$_SESSION["name"]."</i></a></li>";
-        echo "<li><a href='logout.php'><img src='logout.png' width='20px'> Log Out</a></li>";
+        <img src='resources/img/user.png' width='20px'><i> Hello ".$_SESSION["name"]."</i></a></li>";
+        echo "<li><a href='logout.php'><img src='resources/img/logout.png' width='20px'> Log Out</a></li>";
       }
       else{
         echo "<li><a href='register.php'> Sign Up</a></li>
-        <li><a href='login.php'><img src='user.png' width='20px'> Log In</a></li>";
+        <li><a href='login.php'><img src='resources/img/user.png' width='20px'> Log In</a></li>";
       }
       ?>
       </ul>
@@ -60,35 +133,17 @@ body {
 </nav>
 <br><br><br>
 
-<div class="container" style="margin-top: 50px; margin-bottom: 50px ">
-<div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
-  <ol class="carousel-indicators">
-    <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
-    <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
-    <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
-  </ol>
-  <div class="carousel-inner">
-    <div class="carousel-item active">
-      <img class="d-block w-100" src="https://payfastcoza-bef7.kxcdn.com/wp-content/uploads/Black-Friday-blog.png" alt="First slide">
-    </div>
-    <div class="carousel-item">
-      <img class="d-block w-100" src="https://idapgroup.com/blog/blog/wp-content/uploads/2018/12/tild3633-3336-4233-b761-353238323066__6638__ecommercemain.jpg" alt="Second slide">
-    </div>
-    <div class="carousel-item">
-      <img class="d-block w-100" src="http://voicemaster.co.in/wp-content/uploads/2014/11/ecommerce.jpg" alt="Third slide">
-    </div>
-  </div>
-  <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
-    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-    <span class="sr-only">Previous</span>
-  </a>
-  <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
-    <span class="carousel-control-next-icon" aria-hidden="true"></span>
-    <span class="sr-only">Next</span>
-  </a>
-</div>
-</div>
 <div class="container">
+<div class="form-group" id="carrousel">
+    <ul>
+        <li><img src="https://payfastcoza-bef7.kxcdn.com/wp-content/uploads/Black-Friday-blog.png" /></li>
+  <li><img src="https://idapgroup.com/blog/blog/wp-content/uploads/2018/12/tild3633-3336-4233-b761-353238323066__6638__ecommercemain.jpg" /></li>
+  <li><img src="http://voicemaster.co.in/wp-content/uploads/2014/11/ecommerce.jpg" /></li>
+    </ul>
+</div>
+
+
+
   <table style="width:100%">
     <?php
 	 $verileri_al=mysql_query("Select* from stuffs");

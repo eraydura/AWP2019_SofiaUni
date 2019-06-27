@@ -34,7 +34,7 @@ registration {
     font-size:14px; 
 } 
 body {
-background-image:url(paysage.jpg);
+background-image:url(resources/img/paysage.jpg);
 background-repeat: no-repeat;
 background-size: cover;
 background-attachment: fixed;

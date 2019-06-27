@@ -25,7 +25,7 @@ $baglan = mysqli_connect("localhost","root","","mywebapp");
 <style type="text/css">
   
   body {
-  background-image:url(paysage.jpg);
+  background-image:url(resources/img/paysage.jpg);
   background-repeat: no-repeat;
   background-size: cover;
   background-attachment: fixed;
@@ -55,7 +55,7 @@ $baglan = mysqli_connect("localhost","root","","mywebapp");
 <nav class="navbar navbar-inverse navbar-fixed-top">
   <div class="container-fluid">
     <div class="navbar-header">
-      <i><a class="navbar-brand" href="#" title="Profile"><img src="vehicomm.png" class="vehicomm"></a></i>
+      <i><a class="navbar-brand" href="#" title="Profile"><img src="resources/img/vehicomm.png" class="vehicomm"></a></i>
     </div>
     <ul class="nav navbar-nav">
       <li><a href="main.php">Home</a></li>
@@ -67,12 +67,12 @@ $baglan = mysqli_connect("localhost","root","","mywebapp");
           <?php
       if(isset($_SESSION["email"])){
         echo "<li><a href='#' style='color:white; cursor:default'>
-        <img src='user.png' width='20px'><i> Hello ".$_SESSION["name"]."</i></a></li>";
-        echo "<li><a href='logout.php'><img src='logout.png' width='20px'> Log Out</a></li>";
+        <img src='resources/img/user.png' width='20px'><i> Hello ".$_SESSION["name"]."</i></a></li>";
+        echo "<li><a href='logout.php'><img src='resources/img/logout.png' width='20px'> Log Out</a></li>";
       }
       else{
         echo "<li><a href='register.php'> Sign Up</a></li>
-        <li><a href='login.php'><img src='user.png' width='20px'> Log In</a></li>";
+        <li><a href='login.php'><img src='resources/img/user.png' width='20px'> Log In</a></li>";
       }
       ?>
       </ul>
@@ -88,7 +88,7 @@ $baglan = mysqli_connect("localhost","root","","mywebapp");
                     <div  class="col-sm-6 col-md-4" id="picture">
                        <?php
                       if(isset($_SESSION["email"])){
-                        echo "<img src='homer.jpg' alt='picture'/>";
+                        echo "<img src='resources/img/homer.jpg' alt='picture'/>";
                       }
                         ?>
                         

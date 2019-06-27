@@ -1,10 +1,6 @@
 <?php
 session_start();
 include_once("fonctionsphp.php");
-/*$ll = array();
-$qq = array();
-$pp = array();
-$pos = 0;*/
 
 
 echo '<?xml version="1.0" encoding="utf-8"?>';?>
@@ -14,7 +10,10 @@ echo '<?xml version="1.0" encoding="utf-8"?>';?>
 <title>My Basket</title>
 <link rel="stylesheet" href="resources/css/bootstrap.min.css" type="text/css"  />
 <link rel="stylesheet" href="resources/css/style.css" type="text/css" />
+<script src="resources/js/script.js"></script>
 <style type="text/css">
+
+
   body {
   /*background-image:url(paysage.jpg);*/
   background-repeat: no-repeat;
@@ -128,16 +127,16 @@ if($action !== null)
 {
    if(!in_array($action,array('ajout', 'suppression', 'refresh')))
    $erreur=true;
-   //récuperation des variables en POST ou GET
+   
    $l = (isset($_POST['l'])? $_POST['l']:  (isset($_GET['l'])? $_GET['l']:null )) ;
    $p = (isset($_POST['p'])? $_POST['p']:  (isset($_GET['p'])? $_GET['p']:null )) ;
    $q = (isset($_POST['q'])? $_POST['q']:  (isset($_GET['q'])? $_GET['q']:null )) ;
-   //Suppression des espaces verticaux
+   
    $l = preg_replace('#\v#', '',$l);
-   //On verifie que $p soit un float
+   
    $p = floatval($p);
 
-   //On traite $q qui peut etre un entier simple ou un tableau d'entier
+   
     
    if (is_array($q)){
       $QteArticle = array();
@@ -156,9 +155,6 @@ if (!$erreur){
    switch($action){
       Case "ajout":
          ajouterArticle($l,$q,$p);
-         /*$ll[$pos] = $l;
-         $qq[$pos] = $q;
-         $pp[$pos] = $p;*/
          header( "Location: basket1.php" );
           break;
 

@@ -39,12 +39,12 @@ if(($pass == "Adminadmin35") && ($mail == "admin@admin.com")){
 	header("Refresh: 1; url=http://localhost/admin.php");
 }
 else{
-    echo "Connection in progress....";
+    echo "<strong>Connection in progress....</strong>";
 	header("Refresh: 1; url=http://localhost/profile.php"); 
 } 
 }
 else {
-    echo "Unknow Account// Please try again !";
+    echo "<strong>Unknow Account// Please try again !</strong>";
     header("Refresh: 1; url=http://localhost/login.php");
 }
 

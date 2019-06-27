@@ -13,11 +13,12 @@ ini_set('display_errors','off');
 <link rel="stylesheet" href="resources/css/bootstrap.min.css" type="text/css"  />
 <link rel="stylesheet" href="resources/css/style.css" type="text/css" />
 <script src="jquery-3.4.1.min.js"></script>
+<script src="resources/js/script.js"></script>
 
 <style>
 
 body {
-	background-image:url(paysage.jpg);
+	background-image:url(resources/img/paysage.jpg);
 	background-repeat: no-repeat;
 	background-size: cover;
 	background-attachment: fixed;
@@ -42,54 +43,13 @@ color: black;
 
 </style>
 
-<script type="text/javascript">
-	
-jQuery(document).ready(function() {
-   jQuery('#line').on('change', function() {
-     jQuery('#submit3').click();
-
-   });
-});
-
-/*jQuery(document).ready(function() {
-      jQuery("#hide").hide()
-   });*/
-   
-  
-function openclose(div) {
-        var divContenu = div.getElementsByTagName('div')[0];
-        var one = document.getElementById("1")[0];
-        var two = document.getElementById("2")[0];
-        var three = document.getElementById("3")[0];
-
-        if(divContenu.style.display == 'none') {
-            divContenu.style.display = 'block';
-            return true;
-        } else {
-            divContenu.style.display = 'block';
-        }
-        if (divContenu.clicked == true || two.clicked == true || three.clicked == true ) {
-          
-          divContenu.style.display = 'none';
-        }
-    }
-
-     function hideDiv() {
-     document.getElementById("hide").style.display = "none";
-     if (openclose(this)) {
-      document.getElementById("hide").style.display = "block";
-     } 
-}
-
-
-</script>
 </head>
 <body onload="hideDiv()">
 
 <nav class="navbar navbar-inverse navbar-fixed-top">
   <div class="container-fluid">
     <div class="navbar-header">
-      <i><a class="navbar-brand" href="profile.php" title="Profile"><img src="vehicomm.png" class="vehicomm"></a></i>
+      <i><a class="navbar-brand" href="profile.php" title="Profile"><img src="resources/img/vehicomm.png" class="vehicomm"></a></i>
     </div>
     <ul class="nav navbar-nav">
       <li><a href="main.php">Home</a></li>
@@ -101,12 +61,12 @@ function openclose(div) {
          <?php
       if(isset($_SESSION["email"])){
         echo "<li><a href='#' style='color:white; cursor:default'>
-        <img src='user.png' width='20px'><i> Hello ".$_SESSION["name"]."</i></a></li>";
-        echo "<li><a href='logout.php'><img src='logout.png' width='20px'> Log Out</a></li>";
+        <img src='resources/img/user.png' width='20px'><i> Hello ".$_SESSION["name"]."</i></a></li>";
+        echo "<li><a href='logout.php'><img src='resources/img/logout.png' width='20px'> Log Out</a></li>";
       }
       else{
         echo "<li><a href='register.php'> Sign Up</a></li>
-        <li><a href='login.php'><img src='user.png' width='20px'> Log In</a></li>";
+        <li><a href='login.php'><img src='resources/img/user.png' width='20px'> Log In</a></li>";
       }
       ?>
       </ul>
@@ -116,12 +76,6 @@ function openclose(div) {
 <br><br><br>
 
 <div class="container">
-  <!--<ul class="nav nav-tabs">-->
-    <!--<li class="active"><a data-toggle="tab" href="#home">Home</a></li>-->
-   <!-- <li><a data-toggle="tab" href="#div1"><strong>Browse</strong></a></li>
-    <li><a data-toggle="tab" href="#div2"><strong>Search</strong></a></li>
-    <li><a data-toggle="tab" href="#div3"><strong>Choose</strong></a></li>
-  </ul>-->
 <br>
 
 <div style="height: auto; overflow: hidden;">
@@ -171,22 +125,6 @@ function openclose(div) {
 </div>
 
 
-<!--<div class="contain">
-<table class="table table-striped form-group center-block">
-<tr class="active">
-   <form class="form-group form-control-static" action="/submit3.php" method="post">
-    <div class="bask">
-    <input type="text" id="input1" name="code" class="inpt form-control" value="">
-    <input type="text" id="input2" name="prod" class="inpt form-control" value="">
-    <input type="text" id="input3" name="line" class="inpt form-control" value="" onblur="check();">
-    <input type="text" id="input4" name="price" class="inpt form-control" value="">
-    </div>
-    <input type="submit" class="btn btn-success" style="margin-left: 10px;" value="Validate">
-    <input type="reset" class="btn btn-danger" style="float:right; margin-right: 10px;" value="Reset">
-  </form>
-</tr>
-</table>
-</div>-->
 </div>
 
 <?php
@@ -210,7 +148,7 @@ if(isset($_POST["submit"])) {
   }
   else {
       if (move_uploaded_file($_FILES["uplfile"]["tmp_name"], $target_name)) {
-          echo "<strong>The file has been uploaded</strong>";
+          echo "<strong>The file has been uploaded</strong><br>";
           
           $reader = new \PhpOffice\PhpSpreadsheet\Reader\Xls();
       $reader->setReadDataOnly(true);
@@ -269,7 +207,7 @@ if(isset($_POST["submit"])) {
     $sql = "INSERT INTO `products` VALUES ('".$result['A']."','".$result['B']."','".$result['C']."','".$result['D']."','".$result['E']."','".$result['F']."','".$result['G']."','".$result['H']."','".$result['I']."')";
 
 if ($conn->query($sql) === TRUE) {
-    echo "<strong>New record created successfully</strong>";
+    echo "<strong>New record created successfully</strong><br>";
 } else {
     echo "<strong>Error: " . $conn->error. "</strong><br>";
     }

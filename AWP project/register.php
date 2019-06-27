@@ -8,6 +8,7 @@
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+  <script src="resources/js/script.js"></script>
 
   
 <style> 
@@ -24,7 +25,7 @@ registration {
 } 
 
 body {
-background-image:url(paysage.jpg);
+background-image:url(resources/img/paysage.jpg);
 background-repeat: no-repeat;
 background-size: cover;
 background-attachment: fixed;
@@ -44,7 +45,7 @@ form {
 <body> 
    
 <form class="form-group form-control-static" name="RegForm" action="/submit.php" onsubmit="return registration()" method="post">  
-      <h1 class ="form-group" style="padding-left: 50px;"><img src="vehicomm2.png" class="vehicomm"><i> Sign Up </i></h1>  
+      <h1 class ="form-group" style="padding-left: 50px;"><img src="resources/img/vehicomm2.png" class="vehicomm"><i> Sign Up </i></h1>  
 <div class="form-group"><hr/></div>   
 
     <div class="form-group">
@@ -95,20 +96,6 @@ form {
    
 </form> 
 
-<script>
-    
-  
-var check = function() {
-  if (document.getElementById('password').value ==
-    document.getElementById('confirm_password').value) {
-    document.getElementById('message').style.color = 'green';
-    document.getElementById('message').innerHTML = 'matching';
-  } else {
-    document.getElementById('message').style.color = 'red';
-    document.getElementById('message').innerHTML = 'not matching';
-  }
-}
-  
-   </script> 
+
 </body> 
 </html> 

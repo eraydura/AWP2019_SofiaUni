@@ -2,6 +2,7 @@
 <html>
 <head>
 <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+<link rel="stylesheet" href="resources/css/style.css" type="text/css" />
 <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
 <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <meta charset="utf-8">
@@ -10,7 +11,7 @@
 <style>
 
 body {
-    background-image:url(paysage.jpg);
+    background-image:url(resources/img/paysage.jpg);
     background-repeat: no-repeat;
     background-size: cover;
     background-attachment: fixed;
@@ -24,17 +25,6 @@ form {
     padding:20px;
 }
 
-.center-div {
-     margin: auto;
-     width: 500px;
-     margin-top: 50px; 
-}
-
-.vehicomm {
-  width: 150px;
-  float:right;
-}
-
 </style>
 </head>
 
@@ -42,7 +32,7 @@ form {
   <div id="formContent" class="center-div">
 
     <form class="form-group form-control-static" action="/submit2.php" method="post"> 
-      <h1 class ="form-group" style="text-align: center;"><img src="user.png" width="40px" id="icon" alt="User Icon" /><i> Log In </i><img src="vehicomm2.png" class="vehicomm"></h1>  
+      <h1 class ="form-group" style="text-align: center;"><img src="resources/img/user.png" width="40px" id="icon" alt="User Icon" /><i> Log In </i><img src="resources/img/vehicomm2.png" class="vehicomm"></h1>  
 <div class="form-group"><hr/></div>   
 
     <div class="form-group">

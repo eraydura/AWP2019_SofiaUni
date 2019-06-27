@@ -33,7 +33,7 @@ function ajouterArticle($productCode,$quantityProduct,$buyPrice){
    else
    {
    echo "Un problème est survenu veuillez contacter l'administrateur du site.";
-	}
+   }
 }
 
 
