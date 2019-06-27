@@ -43,6 +43,47 @@ color: black;
 
 </style>
 
+<script type="text/javascript">
+  function openclose(div) {
+        var divContenu = div.getElementsByTagName('div')[0];
+        var one = document.getElementById("1")[0];
+        var two = document.getElementById("2")[0];
+        var three = document.getElementById("3")[0];
+
+        if(divContenu.style.display == 'none') {
+            divContenu.style.display = 'block';
+            return true;
+        } else {
+            divContenu.style.display = 'block';
+        }
+        if (divContenu.clicked == true || two.clicked == true || three.clicked == true ) {
+          
+          divContenu.style.display = 'none';
+        }
+    }
+
+    jQuery(document).ready(function() {
+   jQuery('#line').on('change', function() {
+     jQuery('#submit3').click();
+
+   });
+});
+
+/*jQuery(document).ready(function() {
+      jQuery("#hide").hide()
+   });*/
+   
+  
+
+
+     function hideDiv() {
+     document.getElementById("hide").style.display = "none";
+     if (openclose(this)) {
+      document.getElementById("hide").style.display = "block";
+     } 
+}
+</script>
+
 </head>
 <body onload="hideDiv()">
 
