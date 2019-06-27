@@ -13,7 +13,7 @@ ini_set('display_errors','off');
 <link rel="stylesheet" href="resources/css/bootstrap.min.css" type="text/css"  />
 <link rel="stylesheet" href="resources/css/style.css" type="text/css" />
 <script src="jquery-3.4.1.min.js"></script>
-<script src="resources/js/script.js"></script>
+<script src="resources/js/functions.js"></script>
 
 <style>
 

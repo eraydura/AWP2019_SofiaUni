@@ -10,7 +10,7 @@ echo '<?xml version="1.0" encoding="utf-8"?>';?>
 <title>My Basket</title>
 <link rel="stylesheet" href="resources/css/bootstrap.min.css" type="text/css"  />
 <link rel="stylesheet" href="resources/css/style.css" type="text/css" />
-<script src="resources/js/script.js"></script>
+<script src="resources/js/functions.js"></script>
 <style type="text/css">
 
 
