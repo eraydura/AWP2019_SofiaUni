@@ -38,6 +38,9 @@ form {
 </head>
 <body>
 
+<?php if(isset($_SESSION['name'])){ 
+  ?>
+
 <div class="container">
 <form method="post" action="sales.php">
   <h1 class ="form-group" style="padding-left: 50px;">
@@ -175,10 +178,18 @@ if (!$erreur){
          break;
    }
 }
+
   ?>
 </tbody>
 </table>
 </form>
 </div>
+
+<?php
+ } else {
+  echo "<br><strong class='bg-danger'>You don't have the rights ! Please register or log in</strong><br>";
+  echo "<a href='login.php'><input type='button' class='btn-danger' value='Back'></a>";
+}
+ ?>
 </body>
 </html>

@@ -116,6 +116,9 @@ color: black;
 
 <br><br><br>
 
+<?php if(isset($_SESSION['name'])){ 
+  ?>
+
 <div class="container">
 <br>
 
@@ -206,6 +209,7 @@ if(isset($_POST["submit"])) {
 
 }
 
+
 ?>
 
 
@@ -242,6 +246,7 @@ if ($conn->connect_error) {
     die("Connection failed: " . $conn->connect_error);
 }
 
+
 if(isset($_POST["submit"])) {
 	foreach ($sheetData as $result) {
 
@@ -275,6 +280,7 @@ if (mysqli_error() == '1062' ) {
 <?php 
 }
 }
+
 
 try
 {
@@ -320,8 +326,14 @@ while ($data = $req->fetch())
 </tr>
 
 <?php 
-} 
+}
+
 $req->closeCursor(); 
+
+} else {
+  echo "<strong class='bg-danger'>You don't have the rights ! Please register or log in</strong>";
+}
+
 ?>
 </tbody>
 </table>
@@ -351,5 +363,5 @@ $req->closeCursor();
        session_destroy();
        header('profile.php');
 }
-      ?>
+    
 ?>

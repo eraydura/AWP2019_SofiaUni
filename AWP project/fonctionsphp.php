@@ -32,7 +32,7 @@ function ajouterArticle($productCode,$quantityProduct,$buyPrice){
    }
    else
    {
-   echo "Un problème est survenu veuillez contacter l'administrateur du site.";
+   echo "A problem has occurred please contact the site administrator.";
    }
 }
 
@@ -67,7 +67,7 @@ function supprimerArticle($productCode){
       unset($tmp);
    }
    else
-   echo "Un problème est survenu veuillez contacter l'administrateur du site.";
+   echo "A problem has occurred please contact the site administrator.";
 }
 
 
@@ -91,7 +91,7 @@ function modifierQTeArticle($productCode,$quantityProduct){
       supprimerArticle($productCode);
    }
    else
-   echo "Un problème est survenu veuillez contacter l'administrateur du site.";
+   echo "A problem has occurred please contact the site administrator.";
 }
 
 
