@@ -14,7 +14,7 @@
 }
 
 body {
-  background-image:url(paysage.jpg);
+  background-image:url(resources/img/paysage.jpg);
   background-repeat: no-repeat;
   background-size: cover;
   background-attachment: fixed;
@@ -117,3 +117,14 @@ div.spoiler3 div.contenuSpoiler {
   background-color: #d3d3d3;
 }
 
+.center-div {
+     margin: auto;
+     width: 500px;
+     margin-top: 50px; 
+}
+
+#carrousel{
+    position:relative;
+    height:660px;
+    width:1150px;
+}
